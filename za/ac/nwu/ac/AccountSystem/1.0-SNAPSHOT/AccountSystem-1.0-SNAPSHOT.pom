@@ -16,6 +16,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <groupId>za.ac.nwu.ac</groupId>
     <artifactId>AccountSystem</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <description>CMPG 323 MPVENTER AccountSystem</description>
     <packaging>pom</packaging>
 
     <properties>
