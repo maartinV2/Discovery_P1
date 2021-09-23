@@ -21,23 +21,26 @@ public class GeneralResponse<T> implements Serializable {
     public T getPayload(){
         return payload;
     }
-    @Override
-    public boolean equals(Object o){
-        if(this ==o) return true;
-        if(o==null || getClass()!=o.getClass()) return false;
-        GeneralResponse<?> that =(GeneralResponse<?>) o;
-        return  successful== that.successful && Objects.equals(payload, that.payload);
-    }
 
-//        @Override
-//        public int hasCode(){
-//            return Objects.hash(successful, payload);
-//        }
 
     @Override
-    public String toString(){
-        return "GeneralResponse{"+"successful="+successful+", payload="+payload+"}";
-
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GeneralResponse<?> that = (GeneralResponse<?>) o;
+        return successful == that.successful && Objects.equals(payload, that.payload);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(successful, payload);
+    }
+
+    @Override
+    public String toString() {
+        return "GeneralResponse{" +
+                "successful=" + successful +
+                ", payload=" + payload +
+                '}';
+    }
 }
