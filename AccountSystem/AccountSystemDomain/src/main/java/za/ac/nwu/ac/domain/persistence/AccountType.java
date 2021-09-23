@@ -11,16 +11,15 @@ import java.util.Set;
 @Table(name = "ACCOUNT_TYPE", schema = "CMPG323")
 public class AccountType implements Serializable   {
 
-    @Id
-    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "CMPG323.VIT_RSA_GENERIC_SEQ",allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "VIT_RSA_GENERIC_SEQ")
+    private static final long serialVersionUID = 4453290124401196523L;
+
 
     private Long accountTypeId;
     private String mnemonic;
     private String accountTypeName;
     private  LocalDate creationDate;
-    private Set<AccountTransaction> accountTransactions;
 
+    private Set<AccountTransaction> accountTransactions;
 
     public AccountType() {
     }
@@ -30,26 +29,19 @@ public class AccountType implements Serializable   {
         this.mnemonic = mnemonic;
         this.accountTypeName = accountTypeName;
         this.creationDate = creationDate;
+
     }
 
-
+    @Id
+    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "CMPG323.VIT_RSA_GENERIC_SEQ",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "VIT_RSA_GENERIC_SEQ")
 
     @Column(name = "ACCOUNT_TYPE_ID")
-    public Long getAccountTypeId() {
-        return accountTypeId;
-    }
-
-    public void setAccountTypeId(Long accountTypeId) {
-        this.accountTypeId = accountTypeId;
-    }
+    public Long getAccountTypeId() {return accountTypeId;  }
 
     @Column(name="MNEMONIC")
     public String getMnemonic() {
         return mnemonic;
-    }
-
-    public void setMnemonic(String mnemonic) {
-        this.mnemonic = mnemonic;
     }
 
     @Column(name = "ACCOUNT_TYPE_NAME")
@@ -57,26 +49,36 @@ public class AccountType implements Serializable   {
         return accountTypeName;
     }
 
-    public void setAccountTypeName(String accountTypeName) {
-        this.accountTypeName = accountTypeName;
-    }
-
     @Column(name="CREATION_DATE")
     public LocalDate getCreationDate() {
         return creationDate;
-    }
-
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
     }
 
     @OneToMany(targetEntity = AccountTransaction.class,fetch = FetchType.LAZY,mappedBy = "accountType",orphanRemoval = true,cascade = CascadeType.PERSIST)
     public Set<AccountTransaction> getAccountTransActions(){
         return accountTransactions;
     }
-    public void setAccountTransactions(Set<AccountTransaction> accountTransactions){
-        this.accountTransactions = accountTransactions;
+
+
+
+    public void setAccountTypeId(Long accountTypeId) {
+        this.accountTypeId = accountTypeId;
     }
+    public void setMnemonic(String mnemonic) {
+        this.mnemonic = mnemonic;
+    }
+    public void setAccountTypeName(String accountTypeName) {
+        this.accountTypeName = accountTypeName;
+    }
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public void setAccountTransActions(Set<AccountTransaction> accountTransactions){
+        this.accountTransactions=accountTransactions;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
