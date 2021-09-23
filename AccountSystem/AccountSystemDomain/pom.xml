@@ -20,5 +20,9 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <artifactId>javax.persistence-api</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
 </project>
