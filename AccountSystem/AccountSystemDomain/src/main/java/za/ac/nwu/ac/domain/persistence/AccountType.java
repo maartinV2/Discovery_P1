@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -14,19 +15,15 @@ public class AccountType implements Serializable   {
     @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "CMPG323.VIT_RSA_GENERIC_SEQ",allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "VIT_RSA_GENERIC_SEQ")
 
-
-
     private Long accountTypeId;
-
-
     private String mnemonic;
-
-
     private String accountTypeName;
-
-
-
     private  LocalDate creationDate;
+    private Set<AccountTransaction> accountTransactions;
+
+
+    public AccountType() {
+    }
 
     public AccountType(Long accountTypeId, String mnemonic, String accountTypeName, LocalDate creationDate) {
         this.accountTypeId = accountTypeId;
@@ -35,8 +32,7 @@ public class AccountType implements Serializable   {
         this.creationDate = creationDate;
     }
 
-    public AccountType() {
-    }
+
 
     @Column(name = "ACCOUNT_TYPE_ID")
     public Long getAccountTypeId() {
@@ -72,6 +68,14 @@ public class AccountType implements Serializable   {
 
     public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
+    }
+
+    @OneToMany(targetEntity = AccountTransaction.class,fetch = FetchType.LAZY,mappedBy = "accountType",orphanRemoval = true,cascade = CascadeType.PERSIST)
+    public Set<AccountTransaction> getAccountTransActions(){
+        return accountTransactions;
+    }
+    public void setAccountTransactions(Set<AccountTransaction> accountTransactions){
+        this.accountTransactions = accountTransactions;
     }
 
     @Override
