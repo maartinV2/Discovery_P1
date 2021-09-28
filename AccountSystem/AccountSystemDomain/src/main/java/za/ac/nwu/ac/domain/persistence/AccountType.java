@@ -32,6 +32,10 @@ public class AccountType implements Serializable   {
 
     }
 
+    public AccountType(String mnemonic, String accountTypeName, LocalDate creationDate) {
+    }
+
+
     @Id
     @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "CMPG323.VIT_RSA_GENERIC_SEQ",allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "VIT_RSA_GENERIC_SEQ")
