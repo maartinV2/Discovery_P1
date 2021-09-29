@@ -40,9 +40,9 @@ public class AccountTypeTranslatorImpl implements AccountTypeTranslator {
 
     @Override
     public AccountTypeDto create(AccountTypeDto accountTypeDto){
-
         try {
-            AccountType accountType = accountTypeRepository.save(accountTypeDto.getAccountType());
+            AccountType accountType = accountTypeRepository.save(accountTypeDto.ToDomain());
+
             return  new AccountTypeDto(accountType);
             }
         catch ( Exception e){

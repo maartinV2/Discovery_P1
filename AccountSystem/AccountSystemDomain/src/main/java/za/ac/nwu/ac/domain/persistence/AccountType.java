@@ -33,13 +33,15 @@ public class AccountType implements Serializable   {
     }
 
     public AccountType(String mnemonic, String accountTypeName, LocalDate creationDate) {
+        this.mnemonic = mnemonic;
+        this.accountTypeName = accountTypeName;
+        this.creationDate = creationDate;
     }
 
 
     @Id
-    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "CMPG323.VIT_RSA_GENERIC_SEQ",allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "VIT_RSA_GENERIC_SEQ")
-
+    @SequenceGenerator(name = "ACCOUNT_TYPE_ID_SEQ", sequenceName = "CMPG323.ACCOUNT_TYPE_ID_SEQ",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "ACCOUNT_TYPE_ID_SEQ")
     @Column(name = "ACCOUNT_TYPE_ID")
     public Long getAccountTypeId() {return accountTypeId;  }
 

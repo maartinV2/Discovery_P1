@@ -74,7 +74,7 @@ public class AccountTypeDto implements Serializable {
             notes = "creationDate the account type",
             dataType = "java.lang.String",
             example = "2021-01-01",
-            required = true)
+            allowEmptyValue = true)
     public LocalDate getCreationDate() {
         return creationDate;
     }
@@ -92,7 +92,8 @@ public class AccountTypeDto implements Serializable {
     }
 
     @JsonIgnore
-    public AccountType getAccountType(){
+    public AccountType ToDomain(){
+
         return new AccountType(getMnemonic(),getAccountTypeName(),getCreationDate());
     }
 
@@ -113,9 +114,4 @@ public class AccountTypeDto implements Serializable {
 
 
 
-//    public AccountType ToDomain(AccountTypeDto accountTypeDto){
-//        AccountType accountType = new AccountType( );
-//
-//        return accountType;
-//    }
 }
