@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="IU-212.5284.40">
+    <data-source name="AccountSystemRepository/Hibernate" uuid="9ceeb519-9f32-4954-8e09-8609296b61ca">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="ATHENA" exact-version="0" />
+      <user-name>CMPG323</user-name>
+      <schema-mapping />
+    </data-source>
+  </component>
+</project>

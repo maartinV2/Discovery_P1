@@ -20,6 +20,7 @@ public class AccountTypeDto implements Serializable {
     private String accountTypeName;
     private LocalDate creationDate;
 
+
     public AccountTypeDto() {
     }
 
@@ -96,6 +97,8 @@ public class AccountTypeDto implements Serializable {
 
         return new AccountType(getMnemonic(),getAccountTypeName(),getCreationDate());
     }
+
+
 
     @Override
     public int hashCode() {

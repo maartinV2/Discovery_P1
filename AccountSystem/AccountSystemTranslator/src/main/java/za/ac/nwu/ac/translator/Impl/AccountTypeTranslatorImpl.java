@@ -10,6 +10,7 @@ import za.ac.nwu.ac.domain.persistence.AccountType;
 import za.ac.nwu.ac.repo.persistence.AccountTypeRepository;
 import za.ac.nwu.ac.translator.AccountTypeTranslator;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +51,22 @@ public class AccountTypeTranslatorImpl implements AccountTypeTranslator {
         }
 
     }
+    @Override
+    public int  update(AccountTypeDto accountTypeDto){
+        try {
+            String mnemonic=accountTypeDto.ToDomain().getMnemonic();
+            String name =accountTypeDto.ToDomain().getAccountTypeName();
+            LocalDate date=accountTypeDto.ToDomain().getCreationDate();
 
+             accountTypeRepository.updateByMnemonic(mnemonic,name,date);
+
+            return  200;
+        }
+        catch ( Exception e){
+            throw new RuntimeException("Unable to update to DB ", e);
+        }
+
+    }
 
 
 

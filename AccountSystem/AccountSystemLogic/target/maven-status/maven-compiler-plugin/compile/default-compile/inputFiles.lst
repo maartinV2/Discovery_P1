@@ -3,3 +3,5 @@ C:\Development\repo\Discovery_P1\AccountSystem\AccountSystemLogic\src\main\java\
 C:\Development\repo\Discovery_P1\AccountSystem\AccountSystemLogic\src\main\java\za\ac\nwu\ac\logic\flow\CreateAccountTypeFlow.java
 C:\Development\repo\Discovery_P1\AccountSystem\AccountSystemLogic\src\main\java\za\ac\nwu\ac\logic\flow\FetchAccountTypeFlow.java
 C:\Development\repo\Discovery_P1\AccountSystem\AccountSystemLogic\src\main\java\za\ac\nwu\ac\logic\flow\impl\FetchAccountTypeFlowImpl.java
+C:\Development\repo\Discovery_P1\AccountSystem\AccountSystemLogic\src\main\java\za\ac\nwu\ac\logic\flow\UpdateAccountTypeFlow.java
+C:\Development\repo\Discovery_P1\AccountSystem\AccountSystemLogic\src\main\java\za\ac\nwu\ac\logic\flow\impl\UpdateAccountTypeFlowImpl.java
