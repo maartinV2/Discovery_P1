@@ -19,12 +19,12 @@ public class UpdateAccountTypeFlowImpl implements UpdateAccountTypeFlow {
     }
 
     @Override
-    public int update(AccountTypeDto accountType) {
+    public int update(AccountTypeDto accountType, String mnemonic) {
 
             if (null == accountType.getCreationDate()) {
                 accountType.setCreationDate(LocalDate.now());
             }
-        return  accountTypeTranslator.update(accountType);
+        return  accountTypeTranslator.update(accountType,mnemonic);
 
         }
 }

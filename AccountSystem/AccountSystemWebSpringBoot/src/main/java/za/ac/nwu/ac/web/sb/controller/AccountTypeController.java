@@ -78,7 +78,7 @@ public class AccountTypeController {
         return new ResponseEntity(response, HttpStatus.OK);
     }
     @DeleteMapping ("/{mnemonic}")
-    @ApiOperation(value="Gets the configured Account type that matches the mnemonic in the url." , notes="Returns account type")
+    @ApiOperation(value="Deletes the configured Account type that matches the mnemonic in the url." , notes="Returns account type")
     @ApiResponses(value={
             @ApiResponse(code=200, message = "Account type returned", response = GeneralResponse.class),
             @ApiResponse(code=400, message = "Bad Request", response = GeneralResponse.class),
@@ -116,19 +116,24 @@ public class AccountTypeController {
 
 
 
-    @PutMapping("/Update")
-    @ApiOperation( value = "Updates a new AccountType", notes = "Updates existing Accounttype in db")
+    @PutMapping("/{mnemonic}")
+    @ApiOperation( value = "Updates the specified AccountType", notes = "Updates existing AccountType in db")
     @ApiResponses(value={
-            @ApiResponse(code=200, message = "new Account type returned", response = GeneralResponse.class),
+            @ApiResponse(code=200, message = "Updated AccountType returned", response = GeneralResponse.class),
             @ApiResponse(code=400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code=404, message = "Not Found", response = GeneralResponse.class),
             @ApiResponse(code=500, message = "Internal Server Error", response = GeneralResponse.class)
     })
     public   ResponseEntity<GeneralResponse<AccountTypeDto>> update(
+            @ApiParam(value = "The mnemonic that uniqyely identifies the AccountType.",
+            example = "MILES",
+            name = "mnemonic",
+            required = true)
+            @PathVariable("mnemonic" ) final String mnemonic,
             @ApiParam(value = "Request body to create a new AccountType", required = true)
             @RequestBody AccountTypeDto accountTypeDto)
           {
-        int accountTypeResponse = updateAccountTypeFlow.update(accountTypeDto);
+        int accountTypeResponse = updateAccountTypeFlow.update(accountTypeDto,mnemonic);
         GeneralResponse<AccountTypeDto> response = new GeneralResponse(true ,accountTypeResponse);
         return  new ResponseEntity<>(response, HttpStatus.CREATED);
     }

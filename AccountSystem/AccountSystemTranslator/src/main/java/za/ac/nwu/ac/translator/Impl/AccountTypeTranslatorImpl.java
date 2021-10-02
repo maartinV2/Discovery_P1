@@ -83,9 +83,9 @@ public class AccountTypeTranslatorImpl implements AccountTypeTranslator {
 
     }
     @Override
-    public int  update(AccountTypeDto accountTypeDto){
+    public int  update(AccountTypeDto accountTypeDto, String mnemonic){
         try {
-            String mnemonic=accountTypeDto.ToDomain().getMnemonic();
+
             String name =accountTypeDto.ToDomain().getAccountTypeName();
             LocalDate date=accountTypeDto.ToDomain().getCreationDate();
 
