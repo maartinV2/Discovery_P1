@@ -23,9 +23,8 @@ public class AccountTransaction implements Serializable {
     }
 
 
-    public AccountTransaction(Long transactionId, AccountType accountType, Long memberId, Long amount, LocalDate transactionDate) {
+    public AccountTransaction(Long transactionId, Long memberId, Long amount, LocalDate transactionDate) {
         this.transactionId = transactionId;
-        this.accountType = accountType;
         this.memberId = memberId;
         this.amount = amount;
         this.transactionDate = transactionDate;
@@ -34,9 +33,15 @@ public class AccountTransaction implements Serializable {
     @Id
     @SequenceGenerator(name = "ACCOUNT_TX_ID_SEQ", sequenceName = "CMPG323.ACCOUNT_TX_ID_SEQ",allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "ACCOUNT_TX_ID_SEQ")
-    @Column(name = "TX_ID")
+    @Column(name = "ACCOUNT_TX_ID")
     public Long getTransactionId() {
         return transactionId;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ACCOUNT_TYPE_ID")
+    public AccountType getAccountType(){
+        return accountType;
     }
 
     @Column(name = "MEMBER_ID")
@@ -54,28 +59,24 @@ public class AccountTransaction implements Serializable {
         return transactionDate;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ACCOUNT_TYPE_ID")
-   public AccountType getAccountType(){
-        return accountType;
+
+
+
+    public void setTransactionId(Long transactionId) { this.transactionId = transactionId;}
+    public void setAccountType(AccountType accountType){
+        this.accountType=accountType;
     }
-
-
-
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
     }
     public void setAmount(Long amount) {
         this.amount = amount;
     }
-    public void setTransactionId(Long transactionId) { this.transactionId = transactionId;}
+
     public void setTransactionDate(LocalDate transactionDate) {
         this.transactionDate = transactionDate;
     }
 
-    public void setAccountType(AccountType accountType){
-        this.accountType=accountType;
-    }
 
     @Override
     public boolean equals(Object o) {

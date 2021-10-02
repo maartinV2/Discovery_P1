@@ -30,13 +30,13 @@ public class AccountTypeDto implements Serializable {
         this.creationDate = creationDate;
     }
 
+
 //    FromDomain
     public AccountTypeDto(AccountType accountType) {
         this.setAccountTypeName(accountType.getAccountTypeName());
         this.setCreationDate(accountType.getCreationDate());
         this.setMnemonic(accountType.getMnemonic());
     }
-
 
 
     @ApiModelProperty(position = 1,
