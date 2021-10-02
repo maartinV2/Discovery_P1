@@ -16,8 +16,14 @@ import java.util.List;
 public interface AccountTypeRepository extends JpaRepository<AccountType, Long> {
 
     @Transactional
-    @Query("SELECT  at from  AccountType  at WHERE at.mnemonic = :mnemonic")
+    @Query("SELECT  at FROM  AccountType  at WHERE at.mnemonic = :mnemonic")
     AccountType findByMnemonic(String mnemonic);
+
+
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM AccountType at WHERE at.mnemonic = :mnemonic")
+    int deleteAccountTypeByMnemonic(String mnemonic);
 
     @Modifying
     @Query(value = "UPDATE AccountType at SET at.accountTypeName = :accountTypeName, at.creationDate= :creationDate  WHERE at.mnemonic = :mnemonic")

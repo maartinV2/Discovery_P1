@@ -10,7 +10,7 @@ public interface AccountTypeTranslator {
 
     AccountTypeDto create(AccountTypeDto accountType);
 
-
+    int deleteAccountTypeByMnemonic(String mnemonic);
 
     int update(AccountTypeDto accountTypeDto);
 }

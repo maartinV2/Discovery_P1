@@ -56,6 +56,21 @@ public class AccountTypeTranslatorImpl implements AccountTypeTranslator {
     }
 
     @Override
+    public  int deleteAccountTypeByMnemonic(String mnemonic) {
+
+        try {
+
+            int response  = accountTypeRepository.deleteAccountTypeByMnemonic(mnemonic);
+            return  response;
+
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to read from DB ", e);
+
+        }
+
+    }
+
+    @Override
     public AccountTypeDto create(AccountTypeDto accountTypeDto){
         try {
             AccountType accountType = accountTypeRepository.save(accountTypeDto.ToDomain());

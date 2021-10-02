@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import za.ac.nwu.ac.domain.dto.AccountTypeDto;
 import  za.ac.nwu.ac.domain.service.GeneralResponse;
 import za.ac.nwu.ac.logic.flow.CreateAccountTypeFlow;
+import za.ac.nwu.ac.logic.flow.DeleteAccountTypeFlow;
 import za.ac.nwu.ac.logic.flow.FetchAccountTypeFlow;
 import za.ac.nwu.ac.logic.flow.UpdateAccountTypeFlow;
 
@@ -26,15 +27,18 @@ public class AccountTypeController {
     private final FetchAccountTypeFlow fetchAccountTypeFlow;
     private final CreateAccountTypeFlow createAccountTypeFlow;
     private final UpdateAccountTypeFlow updateAccountTypeFlow;
+    private final DeleteAccountTypeFlow deleteAccountTypeFlow;
 
 
     @Autowired
     public AccountTypeController(FetchAccountTypeFlow fetchAccountTypeFlow,
                                  @Qualifier("createAccountTypeFlowName") CreateAccountTypeFlow createAccountTypeFlow,
-                                 @Qualifier("updateAccountTypeFlowName") UpdateAccountTypeFlow updateAccountTypeFlow ) {
+                                 @Qualifier("updateAccountTypeFlowName") UpdateAccountTypeFlow updateAccountTypeFlow,
+                                 @Qualifier("deleteAccountTypeFlowName") DeleteAccountTypeFlow deleteAccountTypeFlow) {
         this.fetchAccountTypeFlow= fetchAccountTypeFlow;
         this.createAccountTypeFlow = createAccountTypeFlow;
         this.updateAccountTypeFlow = updateAccountTypeFlow;
+        this.deleteAccountTypeFlow = deleteAccountTypeFlow;
     }
 
 
@@ -73,7 +77,26 @@ public class AccountTypeController {
         GeneralResponse<List<AccountTypeDto>> response= new GeneralResponse(true,accountType);
         return new ResponseEntity(response, HttpStatus.OK);
     }
+    @DeleteMapping ("/{mnemonic}")
+    @ApiOperation(value="Gets the configured Account type that matches the mnemonic in the url." , notes="Returns account type")
+    @ApiResponses(value={
+            @ApiResponse(code=200, message = "Account type returned", response = GeneralResponse.class),
+            @ApiResponse(code=400, message = "Bad Request", response = GeneralResponse.class),
+            @ApiResponse(code=404, message = "Not Found", response = GeneralResponse.class),
+            @ApiResponse(code=500, message = "Internal Server Error", response = GeneralResponse.class)
+    })
 
+    public ResponseEntity<GeneralResponse<List<AccountTypeDto>>> deleteAccountTypeByMnemonic(
+            @ApiParam(value = "The mnemonic that uniqyely identifies the AccountType.",
+                    example = "MILES",
+                    name = "mnemonic",
+                    required = true)
+            @PathVariable("mnemonic") final String mnemonic){
+
+        int payload= deleteAccountTypeFlow.deleteAccountTypeByMnemonic(mnemonic);
+        GeneralResponse<List<AccountTypeDto>> response= new GeneralResponse(true,payload);
+        return new ResponseEntity(response, HttpStatus.OK);
+    }
 
     @PostMapping("")
     @ApiOperation( value = "Creates a new AccountType", notes = "Creates a new accountType in the database")
