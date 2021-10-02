@@ -5,15 +5,22 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+import za.ac.nwu.ac.domain.dto.AccountTypeDto;
 import za.ac.nwu.ac.domain.persistence.AccountType;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Repository
 public interface AccountTypeRepository extends JpaRepository<AccountType, Long> {
 
+    @Transactional
+    @Query("SELECT  at from  AccountType  at WHERE at.mnemonic = :mnemonic")
+    AccountType findByMnemonic(String mnemonic);
+
     @Modifying
-    @Query(value = "UPDATE AccountType a SET ACCOUNT_TYPE_NAME= :accountTypeName, CREATION_DATE= :creationDate  WHERE MNEMONIC = :mnemonic")
+    @Query(value = "UPDATE AccountType at SET at.accountTypeName = :accountTypeName, at.creationDate= :creationDate  WHERE at.mnemonic = :mnemonic")
     int  updateByMnemonic(String mnemonic, String accountTypeName, LocalDate creationDate);
 
 
