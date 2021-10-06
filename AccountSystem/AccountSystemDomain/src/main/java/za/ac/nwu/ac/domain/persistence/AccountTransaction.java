@@ -1,5 +1,7 @@
 package za.ac.nwu.ac.domain.persistence;
 
+import za.ac.nwu.ac.domain.dto.AccountTransactionDto;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import  java.time.LocalDate;
@@ -15,16 +17,27 @@ public class AccountTransaction implements Serializable {
     private  Long transactionId;
     private  AccountType accountType;
     private  Long memberId;
-    private  Long amount;
+    private  Double amount;
     private  LocalDate transactionDate;
+
+    private  AccountTransactionDetails details;
 
 
     public AccountTransaction() {
     }
 
 
-    public AccountTransaction(Long transactionId, Long memberId, Long amount, LocalDate transactionDate) {
+    public AccountTransaction(Long transactionId, Long memberId, Double amount, LocalDate transactionDate) {
         this.transactionId = transactionId;
+        this.memberId = memberId;
+        this.amount = amount;
+        this.transactionDate = transactionDate;
+    }
+
+
+    public AccountTransaction(Long transactionId, AccountType accountType, AccountTransactionDto accountTransactionDto, Long memberId, double amount, LocalDate transactionDate) {
+        this.transactionId = transactionId;
+        this.accountType =accountType;
         this.memberId = memberId;
         this.amount = amount;
         this.transactionDate = transactionDate;
@@ -50,7 +63,7 @@ public class AccountTransaction implements Serializable {
     }
 
     @Column(name = "AMOUNT")
-    public Long getAmount() {
+    public double getAmount() {
         return amount;
     }
 
@@ -59,8 +72,13 @@ public class AccountTransaction implements Serializable {
         return transactionDate;
     }
 
-
-
+//    public AccountTransactionDetails getDetails() {
+//        return details;
+//    }
+//
+//    public void setDetails(AccountTransactionDetails details) {
+//        this.details = details;
+//    }
 
     public void setTransactionId(Long transactionId) { this.transactionId = transactionId;}
     public void setAccountType(AccountType accountType){
@@ -69,7 +87,7 @@ public class AccountTransaction implements Serializable {
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
     }
-    public void setAmount(Long amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
