@@ -6,5 +6,15 @@
       <user-name>CMPG323</user-name>
       <schema-mapping />
     </data-source>
+    <data-source name="AccountSystemTranslator/Hibernate" uuid="9238b9d6-dd11-4f2e-a7d0-44ac06c154d5">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="ATHENA" exact-version="0" />
+      <user-name>CMPG323</user-name>
+      <schema-mapping />
+    </data-source>
+    <data-source name="AccountSystemLogic/Hibernate" uuid="ef4db060-1cd2-4859-889a-376e31baf1cd">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="ATHENA" exact-version="0" />
+      <user-name>CMPG323</user-name>
+      <schema-mapping />
+    </data-source>
   </component>
 </project>

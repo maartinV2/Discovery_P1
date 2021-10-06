@@ -30,8 +30,8 @@ public class AccountTransactionTranslatorImpl implements AccountTransactionTrans
         List<AccountTransactionDto> AccountTransactionDtos = new ArrayList<>();
         try {
             for ( AccountTransaction accountTransaction : accountTransactionRepository.findAll()) {
-                System.out.println(accountTransaction);
                 AccountTransactionDtos.add(new AccountTransactionDto(accountTransaction));
+                System.out.println(new AccountTransactionDto(accountTransaction));
             }
         } catch (Exception e) {
             throw new RuntimeException("Unable to read from DB ", e);
