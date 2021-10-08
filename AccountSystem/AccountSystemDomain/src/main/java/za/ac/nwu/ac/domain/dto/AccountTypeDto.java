@@ -105,6 +105,13 @@ public class AccountTypeDto implements Serializable {
         this.currency = currency;
     }
 
+
+    @JsonIgnore
+    public AccountType ToDomain(){
+
+        return new AccountType(getMnemonic(),getAccountTypeName(),getCreationDate(),getCurrency());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -117,13 +124,6 @@ public class AccountTypeDto implements Serializable {
     public int hashCode() {
         return Objects.hash(mnemonic, accountTypeName, creationDate, currency);
     }
-
-    @JsonIgnore
-    public AccountType ToDomain(){
-
-        return new AccountType(getMnemonic(),getAccountTypeName(),getCreationDate(),getCurrency());
-    }
-
 
     @Override
     public String toString() {

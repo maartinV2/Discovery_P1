@@ -15,6 +15,9 @@ public class AccountTransactionDetails implements Serializable {
     String partnerName;
     Long numberOfItems;
 
+
+    public AccountTransactionDetails() {
+    }
     public AccountTransactionDetails(AccountTransaction accountTransaction, String partnerName, Long numberOfItems) {
         this.accountTransaction =accountTransaction;
         this.partnerName=partnerName;
@@ -26,50 +29,6 @@ public class AccountTransactionDetails implements Serializable {
         this.numberOfItems=numberOfItems;
     }
 
-    @Id
-    @SequenceGenerator(name = "DISCOVERY_SEQ", sequenceName = "CMPG323.DISCOVERY_SEQ", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DISCOVERY_SEQ")
-    @Column(name = "ACCOUNT_TX_DETAILS_ID")
-    public Long getAccountTransactionDetailsId() {
-        return accountTransactionDetailsId;
-    }
-
-
-    public void setAccountTransactionDetailsId(Long accountTransactionDetailsId) {
-        this.accountTransactionDetailsId = accountTransactionDetailsId;
-    }
-
-    @OneToOne(fetch =FetchType.LAZY)
-    @JoinColumn(name="TX_ID")
-    public AccountTransaction getAccountTransaction() {
-        return accountTransaction;
-    }
-
-    public void setAccountTransaction(AccountTransaction accountTransaction) {
-        this.accountTransaction = accountTransaction;
-    }
-
-    @Column(name = "PARTNER_NAME")
-    public String getPartnerName() {
-        return partnerName;
-    }
-
-
-    public void setPartnerName(String partnerName) {
-        this.partnerName = partnerName;
-    }
-
-    @Column(name = "NUMBER_OF_ITEMS")
-    public Long getNumberOfItems() {
-        return numberOfItems;
-    }
-
-    public void setNumberOfItems(Long numberOfItems) {
-        this.numberOfItems = numberOfItems;
-    }
-
-    public AccountTransactionDetails() {
-    }
 
     public AccountTransactionDetails(Long accountTransactionDetailsId, AccountTransaction accountTransaction, String partnerName, Long numberOfItems) {
         this.accountTransactionDetailsId = accountTransactionDetailsId;
@@ -77,6 +36,38 @@ public class AccountTransactionDetails implements Serializable {
         this.partnerName = partnerName;
         this.numberOfItems = numberOfItems;
     }
+
+    @Id
+    @SequenceGenerator(name = "DISCOVERY_12_SEQ", sequenceName = "CMPG323.DISCOVERY_12_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DISCOVERY_12_SEQ")
+    @Column(name = "ACCOUNT_TX_DETAILS_ID")
+    public Long getAccountTransactionDetailsId() {
+        return accountTransactionDetailsId;
+    }
+
+    @OneToOne(fetch =FetchType.LAZY)
+    @JoinColumn(name="ACCOUNT_TX_ID")
+    public AccountTransaction getAccountTransaction() {return accountTransaction;}
+
+    @Column(name = "PARTNER_NAME")
+    public String getPartnerName() {
+        return partnerName;
+    }
+
+    @Column(name = "NUMBER_OF_ITEMS")
+    public Long getNumberOfItems() {
+        return numberOfItems;
+    }
+
+
+    public void setAccountTransaction(AccountTransaction accountTransaction) {this.accountTransaction = accountTransaction;}
+    public void setPartnerName(String partnerName) {
+        this.partnerName = partnerName;
+    }
+    public void setNumberOfItems(Long numberOfItems) {
+        this.numberOfItems = numberOfItems;
+    }
+    public void setAccountTransactionDetailsId(Long accountTransactionDetailsId) {this.accountTransactionDetailsId = accountTransactionDetailsId;}
 
     @Override
     public boolean equals(Object o) {

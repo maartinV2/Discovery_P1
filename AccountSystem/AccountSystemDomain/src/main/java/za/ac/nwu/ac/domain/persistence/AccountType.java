@@ -43,8 +43,8 @@ public class AccountType implements Serializable   {
 
 
     @Id
-    @SequenceGenerator(name = "DISCOVERY_SEQ", sequenceName = "CMPG323.DISCOVERY_SEQ",allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "DISCOVERY_SEQ")
+    @SequenceGenerator(name = "DISCOVERY_12_SEQ", sequenceName = "CMPG323.DISCOVERY_12_SEQ",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "DISCOVERY_12_SEQ")
     @Column(name = "ACCOUNT_TYPE_ID")
     public Long getAccountTypeId() {return accountTypeId;  }
 
@@ -66,7 +66,7 @@ public class AccountType implements Serializable   {
     @Column(name="CURRENCY")
     public Character getCurrency() {return currency;}
 
-    @OneToMany(targetEntity = AccountTransaction.class,fetch = FetchType.LAZY,mappedBy = "accountType",orphanRemoval = true,cascade = CascadeType.PERSIST)
+    @OneToMany(targetEntity = AccountTransaction.class,fetch = FetchType.LAZY,mappedBy = "accountType")
     public Set<AccountTransaction> getAccountTransActions(){
         return accountTransactions;
     }

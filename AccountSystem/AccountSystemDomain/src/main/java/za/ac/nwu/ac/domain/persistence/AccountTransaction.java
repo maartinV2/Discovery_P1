@@ -1,6 +1,7 @@
 package za.ac.nwu.ac.domain.persistence;
 
 import za.ac.nwu.ac.domain.dto.AccountTransactionDto;
+import za.ac.nwu.ac.domain.persistence.AccountTransactionDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,17 +24,9 @@ public class AccountTransaction implements Serializable {
     private  AccountTransactionDetails details;
 
 
+
     public AccountTransaction() {
     }
-
-
-    public AccountTransaction(Long transactionId, Long memberId, Double amount, LocalDate transactionDate) {
-        this.transactionId = transactionId;
-        this.memberId = memberId;
-        this.amount = amount;
-        this.transactionDate = transactionDate;
-    }
-
 
     public AccountTransaction(Long transactionId, AccountType accountType, AccountTransactionDto accountTransactionDto, Long memberId, double amount, LocalDate transactionDate) {
         this.transactionId = transactionId;
@@ -43,18 +36,13 @@ public class AccountTransaction implements Serializable {
         this.transactionDate = transactionDate;
     }
 
+
     @Id
-    @SequenceGenerator(name = "DISCOVERY_SEQ", sequenceName = "CMPG323.DISCOVERY_SEQ",allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "DISCOVERY_SEQ")
+    @SequenceGenerator(name = "DISCOVERY_12_SEQ", sequenceName = "CMPG323.DISCOVERY_12_SEQ",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "DISCOVERY_12_SEQ")
     @Column(name = "ACCOUNT_TX_ID")
     public Long getTransactionId() {
         return transactionId;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ACCOUNT_TYPE_ID")
-    public AccountType getAccountType(){
-        return accountType;
     }
 
     @Column(name = "MEMBER_ID")
@@ -72,13 +60,17 @@ public class AccountTransaction implements Serializable {
         return transactionDate;
     }
 
-//    public AccountTransactionDetails getDetails() {
-//        return details;
-//    }
-//
-//    public void setDetails(AccountTransactionDetails details) {
-//        this.details = details;
-//    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ACCOUNT_TYPE_ID")
+    public AccountType getAccountType(){
+        return accountType;
+    }
+
+
+    @OneToOne(targetEntity = AccountTransactionDetails.class, fetch = FetchType.LAZY,mappedBy = "accountTransaction",orphanRemoval = true)
+    public AccountTransactionDetails getDetails() {return details;}
+
+
 
     public void setTransactionId(Long transactionId) { this.transactionId = transactionId;}
     public void setAccountType(AccountType accountType){
@@ -95,18 +87,21 @@ public class AccountTransaction implements Serializable {
         this.transactionDate = transactionDate;
     }
 
+    public void setDetails(AccountTransactionDetails details) {
+        this.details = details;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccountTransaction that = (AccountTransaction) o;
-        return Objects.equals(transactionId, that.transactionId) && Objects.equals(accountType, that.accountType) && Objects.equals(memberId, that.memberId) && Objects.equals(amount, that.amount) && Objects.equals(transactionDate, that.transactionDate);
+        return Objects.equals(transactionId, that.transactionId) && Objects.equals(accountType, that.accountType) && Objects.equals(memberId, that.memberId) && Objects.equals(amount, that.amount) && Objects.equals(transactionDate, that.transactionDate) && Objects.equals(details, that.details);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(transactionId, accountType, memberId, amount, transactionDate);
+        return Objects.hash(transactionId, accountType, memberId, amount, transactionDate, details);
     }
 
     @Override
@@ -117,6 +112,7 @@ public class AccountTransaction implements Serializable {
                 ", memberId=" + memberId +
                 ", amount=" + amount +
                 ", transactionDate=" + transactionDate +
+                ", details=" + details +
                 '}';
     }
 }
