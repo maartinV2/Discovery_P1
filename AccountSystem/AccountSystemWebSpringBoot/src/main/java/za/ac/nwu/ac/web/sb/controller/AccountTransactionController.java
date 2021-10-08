@@ -42,7 +42,7 @@ public class AccountTransactionController {
     public  ResponseEntity<GeneralResponse<AccountTransactionDto>> create(
             @ApiParam(value = "Request body to create a new Transaction", required = true)
             @RequestBody AccountTransactionDto accountTransactionDto){
-        AccountTransactionDto accountTransactionsResponse = createAccountTransactionFlow.save(accountTransactionDto);
+        AccountTransactionDto accountTransactionsResponse = createAccountTransactionFlow.create(accountTransactionDto);
         GeneralResponse<AccountTransactionDto> response = new GeneralResponse<>(true ,accountTransactionsResponse);
         return  new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -57,6 +57,7 @@ public class AccountTransactionController {
             @ApiResponse(code=500, message = "Internal Server Error", response = GeneralResponse.class)
     })
     public ResponseEntity<GeneralResponse<List<AccountTransactionDto>>> getAllAccountTypes(){
+        System.out.println("1 Controller");
         List<AccountTransactionDto> accountTransactions= fetchAccountTransactionFlow.getAllAccountTransactions();
         GeneralResponse<List<AccountTransactionDto>> response= new GeneralResponse<>(true,accountTransactions);
         return new ResponseEntity<>(response, HttpStatus.OK);

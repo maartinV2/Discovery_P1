@@ -29,7 +29,6 @@ public class AccountTransactionTranslatorImpl implements AccountTransactionTrans
         try {
             for ( AccountTransaction accountTransaction : accountTransactionRepository.findAll()) {
                 accountTransactions.add(accountTransaction);
-                System.out.println(new AccountTransactionDto(accountTransaction));
             }
         } catch (Exception e) {
             throw new RuntimeException("Unable to read from DB ", e);

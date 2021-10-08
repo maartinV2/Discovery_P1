@@ -20,7 +20,7 @@ public class AccountType implements Serializable   {
     private  LocalDate creationDate;
     private  Character currency;
 
-    private Set<AccountTransaction> accountTransactions;
+    private Set<AccountTransaction> accountTransaction;
 
     public AccountType() {
     }
@@ -43,8 +43,8 @@ public class AccountType implements Serializable   {
 
 
     @Id
-    @SequenceGenerator(name = "DISCOVERY_12_SEQ", sequenceName = "CMPG323.DISCOVERY_12_SEQ",allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "DISCOVERY_12_SEQ")
+    @SequenceGenerator(name = "ACCOUNT_TYPE_ID_SEQ", sequenceName = "CMPG323.ACCOUNT_TYPE_ID_SEQ",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "ACCOUNT_TYPE_ID_SEQ")
     @Column(name = "ACCOUNT_TYPE_ID")
     public Long getAccountTypeId() {return accountTypeId;  }
 
@@ -67,11 +67,13 @@ public class AccountType implements Serializable   {
     public Character getCurrency() {return currency;}
 
     @OneToMany(targetEntity = AccountTransaction.class,fetch = FetchType.LAZY,mappedBy = "accountType")
-    public Set<AccountTransaction> getAccountTransActions(){
-        return accountTransactions;
+    public Set<AccountTransaction> getAccountTransaction(){
+        return accountTransaction;
     }
 
-
+    public void setAccountTransaction(Set<AccountTransaction> accountTransaction) {
+        this.accountTransaction = accountTransaction;
+    }
 
     public void setAccountTypeId(Long accountTypeId) {
         this.accountTypeId = accountTypeId;
@@ -87,22 +89,18 @@ public class AccountType implements Serializable   {
     }
     public void setCurrency(Character currency) {this.currency = currency;}
 
-    public void setAccountTransActions(Set<AccountTransaction> accountTransactions){
-        this.accountTransactions=accountTransactions;
-    }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccountType that = (AccountType) o;
-        return Objects.equals(accountTypeId, that.accountTypeId) && Objects.equals(mnemonic, that.mnemonic) && Objects.equals(accountTypeName, that.accountTypeName) && Objects.equals(creationDate, that.creationDate) && Objects.equals(currency, that.currency) && Objects.equals(accountTransactions, that.accountTransactions);
+        return Objects.equals(accountTypeId, that.accountTypeId) && Objects.equals(mnemonic, that.mnemonic) && Objects.equals(accountTypeName, that.accountTypeName) && Objects.equals(creationDate, that.creationDate) && Objects.equals(currency, that.currency) && Objects.equals(accountTransaction, that.accountTransaction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountTypeId, mnemonic, accountTypeName, creationDate, currency, accountTransactions);
+        return Objects.hash(accountTypeId, mnemonic, accountTypeName, creationDate, currency, accountTransaction);
     }
 
     @Override
@@ -113,7 +111,7 @@ public class AccountType implements Serializable   {
                 ", accountTypeName='" + accountTypeName + '\'' +
                 ", creationDate=" + creationDate +
                 ", currency=" + currency +
-                ", accountTransactions=" + accountTransactions +
+                ", accountTransaction=" + accountTransaction +
                 '}';
     }
 }

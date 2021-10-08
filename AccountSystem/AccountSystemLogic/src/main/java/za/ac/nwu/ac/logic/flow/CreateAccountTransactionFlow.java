@@ -5,5 +5,5 @@ import za.ac.nwu.ac.domain.persistence.AccountTransaction;
 
 
 public interface CreateAccountTransactionFlow {
-   AccountTransactionDto save(AccountTransactionDto accountTransactionDto);
+   AccountTransactionDto create(AccountTransactionDto accountTransactionDto);
 }

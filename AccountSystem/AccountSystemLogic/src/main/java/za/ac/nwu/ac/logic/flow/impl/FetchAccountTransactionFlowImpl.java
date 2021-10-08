@@ -24,6 +24,7 @@ public class FetchAccountTransactionFlowImpl implements FetchAccountTransactionF
 
     @Override
     public List<AccountTransactionDto> getAllAccountTransactions() {
+        System.out.println("2 FetchTransFlow");
         List<AccountTransactionDto> accountTransactionDtos = new ArrayList<>();
         for(AccountTransaction accountTransaction:accountTransactionTranslator.getAllAccountTransactions()){
             accountTransactionDtos.add( new AccountTransactionDto(accountTransaction));

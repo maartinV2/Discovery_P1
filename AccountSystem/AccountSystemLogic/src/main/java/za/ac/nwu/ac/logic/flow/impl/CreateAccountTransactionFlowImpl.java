@@ -28,25 +28,32 @@ public class CreateAccountTransactionFlowImpl implements CreateAccountTransactio
         this.fetchAccountTypeFlow = fetchAccountTypeFlow;
     }
 
+
+
+
     @Override
-    public AccountTransactionDto save(AccountTransactionDto accountTransactionDto){
+    public AccountTransactionDto create(AccountTransactionDto accountTransactionDto){
         accountTransactionDto.setTransactionId(null);
+
         AccountType accountType = fetchAccountTypeFlow.getAccountTypeDbEntityByMnemonic(accountTransactionDto.getMnemonic());
         AccountTransaction accountTransaction =accountTransactionDto.ToDomain(accountType);
-
         AccountTransaction createdAccountTransaction = accountTransactionTranslator.save(accountTransaction);
-        System.out.println(createdAccountTransaction);
 
-        if(null != accountTransactionDto.getDetailsDto()){
-            AccountTransactionDetails accountTransactionDetails = accountTransactionDto.getDetailsDto().ToDomain(createdAccountTransaction);
-            System.out.println(accountTransactionDetails);
-            accountTransactionDetailsTranslator.save(accountTransactionDetails);
-        }
+//        if(null != accountTransactionDto.getDetailsDto()){
+//            AccountTransactionDetails accountTransactionDetails = accountTransactionDto.getDetailsDto().ToDomain(createdAccountTransaction);
+//            System.out.println(accountTransactionDetails);
+//            accountTransactionDetailsTranslator.save(accountTransactionDetails);
+//        }
+
+        //Case 5 with cascade dont save mannully link both ways
+//        if(null != accountTransactionDto.getDetailsDto()) {
+//            AccountTransactionDetails accountTransactionDetails =accountTransactionDto.getDetailsDto().ToDomain(accountTransaction);
+//            accountTransaction.setDetails(accountTransactionDetails);
+//        }
+//        AccountTransaction createdAccountTransaction = accountTransactionTranslator.save(accountTransaction);
+//        System.out.println(createdAccountTransaction);
 
 
-        if(null == accountTransactionDto.getTransactionDate()){
-            accountTransactionDto.setTransactionDate(LocalDate.now());
-        }
          return new AccountTransactionDto();
     }
 
