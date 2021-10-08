@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import za.ac.nwu.ac.domain.persistence.AccountTransaction;
+import za.ac.nwu.ac.domain.persistence.AccountTransactionDetails;
 import za.ac.nwu.ac.domain.persistence.AccountType;
 
 import java.io.Serializable;
@@ -18,14 +19,15 @@ public class AccountTransactionDto implements Serializable {
     private Long transactionId;
     private String mnemonic;
     private Long memberId;
-    private Long amount;
+    private double amount;
     private LocalDate transactionDate;
+    private AccountTransactionDetailsDto detailsDto;
 
     public AccountTransactionDto() {
 
     }
 
-    public AccountTransactionDto(Long transactionId, String mnemonic, Long memberId, Long amount, LocalDate transactionDate) {
+    public AccountTransactionDto(Long transactionId, String mnemonic, Long memberId, Double amount, LocalDate transactionDate) {
         this.transactionId = transactionId;
         this.mnemonic = mnemonic;
         this.memberId = memberId;
@@ -33,23 +35,30 @@ public class AccountTransactionDto implements Serializable {
         this.transactionDate = transactionDate;
     }
 
+
     //FromDomain
     public AccountTransactionDto(AccountTransaction accountTransaction) {
-        this.setTransactionId(accountTransaction.getTransactionId());
-        this.setMemberId(accountTransaction.getMemberId());
-        this.setAccountType(accountTransaction.getAccountType().getMnemonic());
-        this.setAmount(accountTransaction.getAmount());
-        this.setTransactionDate(accountTransaction.getTransactionDate());
-
+        this.transactionId = accountTransaction.getTransactionId();
+        this.mnemonic =accountTransaction.getAccountType().getMnemonic(); ;
+        this.memberId = accountTransaction.getMemberId();
+        this.amount = accountTransaction.getAmount();
+        this.transactionDate = accountTransaction.getTransactionDate();
+        System.out.println( "3 DTO AccountTransactionID = "+ this.transactionId );
+       if(null!=accountTransaction.getDetails()){
+           this.detailsDto = new AccountTransactionDetailsDto(accountTransaction.getDetails());
+           System.out.println( this.detailsDto);
+       }
 
     }
+
+
 
     @ApiModelProperty(position = 1,
             value = "AccountTransaction Id",
             name = "Id",
             notes = "Uniquely identifies the account transaction",
             dataType = "java.lang.String",
-            example = "100000000000000014",
+            example = "11",
             required = true)
     public Long getTransactionId() {
         return transactionId;
@@ -59,19 +68,18 @@ public class AccountTransactionDto implements Serializable {
         this.transactionId = transactionId;
     }
 
-
     @ApiModelProperty(position = 2,
-            value = "AccountType Object",
-            name = "AccountType",
-            notes = "Uniquely identifies the account type",
+            value = "AccountType Mnemonic",
+            name = "Id",
+            notes = "Uniquely identifies what AccountType the Transaction is",
             dataType = "java.lang.String",
-            example = "AccountType{accountTypeId=100000000000000017, mnemonic='MILES', accountTypeName='Miles', creationDate=2021-09-09}",
+            example = "MILES",
             required = true)
-    public String getAccountType() {
+    public String getMnemonic() {
         return mnemonic;
     }
 
-    public void setAccountType(String mnemonic) {
+    public void setMnemonic(String mnemonic) {
         this.mnemonic = mnemonic;
     }
 
@@ -80,7 +88,7 @@ public class AccountTransactionDto implements Serializable {
             name = "Id",
             notes = "Uniquely identifies what member accountTransaction belongs to ",
             dataType = "java.lang.String",
-            example = "100000000000000014",
+            example = "114",
             required = true)
     public Long getMemberId() {
         return memberId;
@@ -97,11 +105,11 @@ public class AccountTransactionDto implements Serializable {
             dataType = "java.lang.String",
             example = "200",
             required = true)
-    public Long getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
@@ -121,10 +129,20 @@ public class AccountTransactionDto implements Serializable {
         this.transactionDate = transactionDate;
     }
 
-    @JsonIgnore
-    public AccountTransaction ToDomain() {
 
-        return new AccountTransaction(getTransactionId(), getMemberId(), getAmount(), getTransactionDate());
+    public AccountTransactionDetailsDto getDetailsDto() {
+        return detailsDto;
+    }
+
+    public void setDetailsDto(AccountTransactionDetailsDto detailsDto) {
+        this.detailsDto = detailsDto;
+    }
+
+
+
+    @JsonIgnore
+    public AccountTransaction ToDomain(AccountType accountType) {
+        return  new AccountTransaction(this.getTransactionId(),accountType,this.getMemberId(),this.getAmount(),this.getTransactionDate());
     }
 
     @Override
@@ -132,7 +150,7 @@ public class AccountTransactionDto implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccountTransactionDto that = (AccountTransactionDto) o;
-        return Objects.equals(transactionId, that.transactionId) && Objects.equals(mnemonic, that.mnemonic) && Objects.equals(memberId, that.memberId) && Objects.equals(amount, that.amount) && Objects.equals(transactionDate, that.transactionDate);
+        return Double.compare(that.amount, amount) == 0 && Objects.equals(transactionId, that.transactionId) && Objects.equals(mnemonic, that.mnemonic) && Objects.equals(memberId, that.memberId) && Objects.equals(transactionDate, that.transactionDate);
     }
 
     @Override

@@ -1,5 +1,8 @@
 package za.ac.nwu.ac.domain.persistence;
 
+import za.ac.nwu.ac.domain.dto.AccountTransactionDto;
+import za.ac.nwu.ac.domain.persistence.AccountTransactionDetails;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import  java.time.LocalDate;
@@ -15,16 +18,19 @@ public class AccountTransaction implements Serializable {
     private  Long transactionId;
     private  AccountType accountType;
     private  Long memberId;
-    private  Long amount;
+    private  Double amount;
     private  LocalDate transactionDate;
+
+    private  AccountTransactionDetails details;
 
 
     public AccountTransaction() {
     }
 
 
-    public AccountTransaction(Long transactionId, Long memberId, Long amount, LocalDate transactionDate) {
+    public AccountTransaction(Long transactionId, AccountType accountType, Long memberId, Double amount, LocalDate transactionDate) {
         this.transactionId = transactionId;
+        this.accountType = accountType;
         this.memberId = memberId;
         this.amount = amount;
         this.transactionDate = transactionDate;
@@ -38,19 +44,13 @@ public class AccountTransaction implements Serializable {
         return transactionId;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ACCOUNT_TYPE_ID")
-    public AccountType getAccountType(){
-        return accountType;
-    }
-
     @Column(name = "MEMBER_ID")
     public Long getMemberId() {
         return memberId;
     }
 
     @Column(name = "AMOUNT")
-    public Long getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
@@ -59,6 +59,15 @@ public class AccountTransaction implements Serializable {
         return transactionDate;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ACCOUNT_TYPE_ID")
+    public AccountType getAccountType(){
+        return accountType;
+    }
+
+
+    @OneToOne(targetEntity = AccountTransactionDetails.class, fetch = FetchType.LAZY,mappedBy = "accountTransaction",orphanRemoval = true,cascade = CascadeType.PERSIST)
+    public AccountTransactionDetails getDetails() {return details;}
 
 
 
@@ -69,12 +78,12 @@ public class AccountTransaction implements Serializable {
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
     }
-    public void setAmount(Long amount) {
-        this.amount = amount;
-    }
-
+    public void setAmount(Double amount) {this.amount = amount;}
     public void setTransactionDate(LocalDate transactionDate) {
         this.transactionDate = transactionDate;
+    }
+    public void setDetails(AccountTransactionDetails details) {
+        this.details = details;
     }
 
 

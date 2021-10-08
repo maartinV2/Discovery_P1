@@ -4,12 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import za.ac.nwu.ac.domain.dto.AccountTransactionDto;
-import za.ac.nwu.ac.domain.dto.AccountTypeDto;
+import za.ac.nwu.ac.domain.persistence.AccountTransaction;
 import za.ac.nwu.ac.logic.flow.FetchAccountTransactionFlow;
-import za.ac.nwu.ac.logic.flow.FetchAccountTypeFlow;
 import za.ac.nwu.ac.translator.AccountTransactionTranslator;
-import za.ac.nwu.ac.translator.AccountTypeTranslator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Transactional
@@ -25,7 +24,18 @@ public class FetchAccountTransactionFlowImpl implements FetchAccountTransactionF
 
     @Override
     public List<AccountTransactionDto> getAllAccountTransactions() {
-        return accountTransactionTranslator.getAllAccountTransactions();
+        System.out.println("2 FetchTransFlow");
+        List<AccountTransactionDto> accountTransactionDtos = new ArrayList<>();
+        for(AccountTransaction accountTransaction:accountTransactionTranslator.getAllAccountTransactions()){
+            accountTransactionDtos.add( new AccountTransactionDto(accountTransaction));
+        }
+        return accountTransactionDtos;
+    }
+
+    @Override
+    public AccountTransactionDto getAccountTransactionById(Long transactionId){
+        AccountTransaction accountTransaction = accountTransactionTranslator.getAccountTransActionByPK(transactionId);
+        return  null != accountTransaction ? new AccountTransactionDto(accountTransaction) :null;
     }
 
 }

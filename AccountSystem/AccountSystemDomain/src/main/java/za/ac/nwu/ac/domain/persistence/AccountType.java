@@ -18,24 +18,27 @@ public class AccountType implements Serializable   {
     private String mnemonic;
     private String accountTypeName;
     private  LocalDate creationDate;
+    private  Character currency;
 
-    private Set<AccountTransaction> accountTransactions;
+    private Set<AccountTransaction> accountTransaction;
 
     public AccountType() {
     }
 
-    public AccountType(Long accountTypeId, String mnemonic, String accountTypeName, LocalDate creationDate) {
+    public AccountType(Long accountTypeId, String mnemonic, String accountTypeName, LocalDate creationDate, Character currency) {
         this.accountTypeId = accountTypeId;
         this.mnemonic = mnemonic;
         this.accountTypeName = accountTypeName;
         this.creationDate = creationDate;
+        this.currency =currency;
 
     }
 
-    public AccountType(String mnemonic, String accountTypeName, LocalDate creationDate) {
+    public AccountType(String mnemonic, String accountTypeName, LocalDate creationDate, Character currency) {
         this.mnemonic = mnemonic;
         this.accountTypeName = accountTypeName;
         this.creationDate = creationDate;
+        this.currency =currency;
     }
 
 
@@ -60,12 +63,17 @@ public class AccountType implements Serializable   {
         return creationDate;
     }
 
-    @OneToMany(targetEntity = AccountTransaction.class,fetch = FetchType.LAZY,mappedBy = "accountType",orphanRemoval = true,cascade = CascadeType.PERSIST)
-    public Set<AccountTransaction> getAccountTransActions(){
-        return accountTransactions;
+    @Column(name="CURRENCY")
+    public Character getCurrency() {return currency;}
+
+    @OneToMany(targetEntity = AccountTransaction.class,fetch = FetchType.LAZY,mappedBy = "accountType")
+    public Set<AccountTransaction> getAccountTransaction(){
+        return accountTransaction;
     }
 
-
+    public void setAccountTransaction(Set<AccountTransaction> accountTransaction) {
+        this.accountTransaction = accountTransaction;
+    }
 
     public void setAccountTypeId(Long accountTypeId) {
         this.accountTypeId = accountTypeId;
@@ -79,11 +87,7 @@ public class AccountType implements Serializable   {
     public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
-
-    public void setAccountTransActions(Set<AccountTransaction> accountTransactions){
-        this.accountTransactions=accountTransactions;
-    }
-
+    public void setCurrency(Character currency) {this.currency = currency;}
 
 
     @Override
@@ -91,22 +95,23 @@ public class AccountType implements Serializable   {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccountType that = (AccountType) o;
-        return Objects.equals(accountTypeId, that.accountTypeId) && Objects.equals(mnemonic, that.mnemonic) && Objects.equals(accountTypeName, that.accountTypeName) && Objects.equals(creationDate, that.creationDate);
+        return Objects.equals(accountTypeId, that.accountTypeId) && Objects.equals(mnemonic, that.mnemonic) && Objects.equals(accountTypeName, that.accountTypeName) && Objects.equals(creationDate, that.creationDate) && Objects.equals(currency, that.currency) && Objects.equals(accountTransaction, that.accountTransaction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountTypeId, mnemonic, accountTypeName, creationDate);
+        return Objects.hash(accountTypeId, mnemonic, accountTypeName, creationDate, currency, accountTransaction);
     }
 
     @Override
     public String toString() {
-
         return "AccountType{" +
                 "accountTypeId=" + accountTypeId +
                 ", mnemonic='" + mnemonic + '\'' +
                 ", accountTypeName='" + accountTypeName + '\'' +
                 ", creationDate=" + creationDate +
+                ", currency=" + currency +
+                ", accountTransaction=" + accountTransaction +
                 '}';
     }
 }

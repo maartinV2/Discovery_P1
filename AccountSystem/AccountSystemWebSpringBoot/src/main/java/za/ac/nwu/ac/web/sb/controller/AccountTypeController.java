@@ -32,9 +32,9 @@ public class AccountTypeController {
 
     @Autowired
     public AccountTypeController(FetchAccountTypeFlow fetchAccountTypeFlow,
-                                 @Qualifier("createAccountTypeFlowName") CreateAccountTypeFlow createAccountTypeFlow,
-                                 @Qualifier("updateAccountTypeFlowName") UpdateAccountTypeFlow updateAccountTypeFlow,
-                                 @Qualifier("deleteAccountTypeFlowName") DeleteAccountTypeFlow deleteAccountTypeFlow) {
+               @Qualifier("createAccountTypeFlowName") CreateAccountTypeFlow createAccountTypeFlow,
+               @Qualifier("updateAccountTypeFlowName") UpdateAccountTypeFlow updateAccountTypeFlow,
+               @Qualifier("deleteAccountTypeFlowName") DeleteAccountTypeFlow deleteAccountTypeFlow) {
         this.fetchAccountTypeFlow= fetchAccountTypeFlow;
         this.createAccountTypeFlow = createAccountTypeFlow;
         this.updateAccountTypeFlow = updateAccountTypeFlow;

@@ -1,7 +1,5 @@
 package za.ac.nwu.ac.translator.Impl;
 
-import com.sun.org.apache.bcel.internal.generic.LUSHR;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -53,6 +51,17 @@ public class AccountTypeTranslatorImpl implements AccountTypeTranslator {
 
         }
         return  accountTypeDto;
+    }
+
+    @Override
+    public  AccountType getAccountTypeDbEntityByMnemonic(String mnemonic) {
+        AccountType   accountType= new AccountType();
+        try {
+           accountType  = accountTypeRepository.findByMnemonic(mnemonic) ;
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to read from DB ", e);
+        }
+        return  accountType;
     }
 
     @Override
