@@ -19,23 +19,29 @@ public class AccountTypeDto implements Serializable {
     private String mnemonic;
     private String accountTypeName;
     private LocalDate creationDate;
+    private Character currency;
 
 
     public AccountTypeDto() {
     }
 
-    public AccountTypeDto(String mnemonic, String accountTypeName, LocalDate creationDate) {
+    public AccountTypeDto(String mnemonic, String accountTypeName, LocalDate creationDate, Character currency ) {
         this.mnemonic = mnemonic;
         this.accountTypeName = accountTypeName;
         this.creationDate = creationDate;
+        this.currency =currency;
+
     }
 
 
-//    FromDomain
+
+    //    FromDomain
     public AccountTypeDto(AccountType accountType) {
         this.setAccountTypeName(accountType.getAccountTypeName());
         this.setCreationDate(accountType.getCreationDate());
         this.setMnemonic(accountType.getMnemonic());
+        this.setCurrency(accountType.getCurrency());
+
     }
 
 
@@ -84,25 +90,38 @@ public class AccountTypeDto implements Serializable {
         this.creationDate = creationDate;
     }
 
+    @ApiModelProperty(position = 4,
+            value = "AccountType currency",
+            name="currency",
+            notes = "currency char",
+            dataType = "java.lang.String",
+            example = "R",
+            allowEmptyValue = true)
+    public Character getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Character currency) {
+        this.currency = currency;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccountTypeDto that = (AccountTypeDto) o;
-        return Objects.equals(mnemonic, that.mnemonic) && Objects.equals(accountTypeName, that.accountTypeName) && Objects.equals(creationDate, that.creationDate);
+        return Objects.equals(mnemonic, that.mnemonic) && Objects.equals(accountTypeName, that.accountTypeName) && Objects.equals(creationDate, that.creationDate) && Objects.equals(currency, that.currency);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mnemonic, accountTypeName, creationDate, currency);
     }
 
     @JsonIgnore
     public AccountType ToDomain(){
 
-        return new AccountType(getMnemonic(),getAccountTypeName(),getCreationDate());
-    }
-
-
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(mnemonic, accountTypeName, creationDate);
+        return new AccountType(getMnemonic(),getAccountTypeName(),getCreationDate(),getCurrency());
     }
 
 
@@ -112,9 +131,7 @@ public class AccountTypeDto implements Serializable {
                 "mnemonic='" + mnemonic + '\'' +
                 ", accountTypeName='" + accountTypeName + '\'' +
                 ", creationDate=" + creationDate +
+                ", currency=" + currency +
                 '}';
     }
-
-
-
 }
