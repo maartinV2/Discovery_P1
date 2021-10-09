@@ -13,6 +13,9 @@ public interface AccountTransactionTranslator {
     AccountTransaction getAccountTransActionByPK(Long transactionId);
 
     AccountTransaction save(AccountTransaction accountTransaction);
+
+    int update(AccountTransaction accountTransaction, Long transactionId);
 }
+
 
 

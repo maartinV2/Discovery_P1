@@ -9,6 +9,7 @@ import za.ac.nwu.ac.domain.persistence.AccountType;
 import za.ac.nwu.ac.translator.AccountTransactionTranslator;
 import za.ac.nwu.ac.repo.persistence.AccountTransactionRepository;
 
+import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +53,26 @@ public class AccountTransactionTranslatorImpl implements AccountTransactionTrans
 
         try{
             return accountTransactionRepository.save(accountTransaction);
+        }
+        catch ( Exception e){
+            throw new RuntimeException("Unable to save in DB ", e);
+        }
+    }
+    @Override
+    public int update(AccountTransaction accountTransaction, Long transactionId) {
+       System.out.println("ID "+transactionId);
+        Long ACCOUNT_TYPE_ID=accountTransaction.getAccountType().getAccountTypeId();
+        System.out.println("ACCountTYPE ID "+accountTransaction.getAccountType().getAccountTypeId());
+        Long MEMBER_ID=accountTransaction.getMemberId();
+        System.out.println("member ID "+accountTransaction.getMemberId());
+        Long AMOUNT=accountTransaction.getAmount();
+        System.out.println("Amount  "+accountTransaction.getAmount());
+        LocalDate TX_DATE=accountTransaction.getTransactionDate();
+        System.out.println("Date  "+accountTransaction.getTransactionDate());
+        try{
+
+           accountTransactionRepository.updateByTransactionId(transactionId,ACCOUNT_TYPE_ID,MEMBER_ID,AMOUNT,TX_DATE);
+            return 200;
         }
         catch ( Exception e){
             throw new RuntimeException("Unable to save in DB ", e);

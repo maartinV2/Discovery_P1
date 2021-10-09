@@ -22,13 +22,15 @@ public class AccountTransactionController {
 
     private final FetchAccountTransactionFlow fetchAccountTransactionFlow;
     private final CreateAccountTransactionFlow createAccountTransactionFlow;
+    private final UpdateAccountTransactionFlow updateAccountTransactionFlow;
 
 
 
     @Autowired
-    public AccountTransactionController(FetchAccountTransactionFlow fetchAccountTransactionFlow, CreateAccountTransactionFlow createAccountTransactionFlow) {
+    public AccountTransactionController(FetchAccountTransactionFlow fetchAccountTransactionFlow, CreateAccountTransactionFlow createAccountTransactionFlow,UpdateAccountTransactionFlow updateAccountTransactionFlow) {
         this.fetchAccountTransactionFlow= fetchAccountTransactionFlow;
         this.createAccountTransactionFlow =createAccountTransactionFlow;
+        this.updateAccountTransactionFlow= updateAccountTransactionFlow;
     }
 
     @PostMapping("")
@@ -62,6 +64,29 @@ public class AccountTransactionController {
         List<AccountTransactionDto> accountTransactions= fetchAccountTransactionFlow.getAllAccountTransactions();
         GeneralResponse<List<AccountTransactionDto>> response= new GeneralResponse<>(true,accountTransactions);
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+
+    @PutMapping("/{transactionId}")
+    @ApiOperation( value = "Updates the specified transaction", notes = "Updates existing transaction in db")
+    @ApiResponses(value={
+            @ApiResponse(code=200, message = "Updated transaction updated", response = GeneralResponse.class),
+            @ApiResponse(code=400, message = "Bad Request", response = GeneralResponse.class),
+            @ApiResponse(code=404, message = "Not Found", response = GeneralResponse.class),
+            @ApiResponse(code=500, message = "Internal Server Error", response = GeneralResponse.class)
+    })
+    public   ResponseEntity<GeneralResponse<AccountTransactionDto>> update(
+            @ApiParam(value = "The mnemonic that uniquely identifies the transaction.",
+                    example = "50001",
+                    name = "transactionId",
+                    required = true)
+            @PathVariable("transactionId" ) final Long transactionId,
+            @ApiParam(value = "Request body to create a new Transaction", required = true)
+            @RequestBody AccountTransactionDto accountTransactionDto)
+    {
+        int accountTypeResponse = updateAccountTransactionFlow.update(accountTransactionDto,transactionId);
+        GeneralResponse<AccountTransactionDto> response = new GeneralResponse(true ,accountTypeResponse);
+        return  new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
 }

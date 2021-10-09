@@ -31,6 +31,25 @@ public class AccountTransactionDetailsTranslatorImpl implements AccountTransacti
             throw new RuntimeException("Unable to save in DB ", e);
         }
     }
+    @Override
+    public int update(AccountTransactionDetails accountTransactionDetails) {
+        Long transactionId =accountTransactionDetails.getAccountTransaction().getTransactionId();
+        System.out.println(transactionId);
+        Long numberOfItems=accountTransactionDetails.getNumberOfItems();
+        System.out.println(numberOfItems);
+        String partnerName =accountTransactionDetails.getPartnerName();
+        System.out.println(partnerName);
+        Long accountTransactionDetailsID = accountTransactionDetails.getAccountTransactionDetailsId();
+        System.out.println(accountTransactionDetailsID);
+
+        try{
+//            return accountTransactionDetailsRepository.updateByTransactionDetailsId(transactionId,numberOfItems,partnerName,accountTransactionDetailsID);
+            return accountTransactionDetailsRepository.updateByTransactionId(transactionId,numberOfItems,partnerName);
+        }
+        catch ( Exception e){
+            throw new RuntimeException("Unable to save in DB ", e);
+        }
+    }
 
 
 }
