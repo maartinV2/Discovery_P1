@@ -22,10 +22,10 @@
     </schema>
     <schema id="7" parent="1" name="CMPG323">
       <ObjectId>49</ObjectId>
-      <CreatedTimestamp>2021-09-23.12:35:06</CreatedTimestamp>
-      <ModifiedTimestamp>2021-10-08.22:48:08</ModifiedTimestamp>
+      <CreatedTimestamp>2021-10-09.17:45:58</CreatedTimestamp>
+      <ModifiedTimestamp>2021-10-09.17:53:09</ModifiedTimestamp>
       <IntrospectionVersion>200820</IntrospectionVersion>
-      <IntrospectionTimestamp>2021-10-08.23:49:10</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2021-10-09.18:46:31</IntrospectionTimestamp>
       <Current>1</Current>
     </schema>
     <schema id="8" parent="1" name="CTXSYS">
@@ -215,80 +215,31 @@
       <DefaultTablespace>SYSTEM</DefaultTablespace>
       <TemporaryTablespace>TEMP</TemporaryTablespace>
     </user>
-    <sequence id="44" parent="7" name="ACCOUNT_TX_DETAILS_ID_SEQ">
-      <ObjectId>20567</ObjectId>
-      <CreatedTimestamp>2021-10-06.20:12:33</CreatedTimestamp>
-      <ModifiedTimestamp>2021-10-06.20:12:33</ModifiedTimestamp>
-      <SequenceIdentity>1(100000000000000006)</SequenceIdentity>
-      <CacheSize>-2147483648</CacheSize>
+    <sequence id="44" parent="7" name="ACCOUNT_SEQ">
+      <ObjectId>20671</ObjectId>
+      <CreatedTimestamp>2021-10-09.17:45:58</CreatedTimestamp>
+      <ModifiedTimestamp>2021-10-09.17:45:58</ModifiedTimestamp>
+      <SequenceIdentity>1(50022)</SequenceIdentity>
     </sequence>
-    <sequence id="45" parent="7" name="ACCOUNT_TX_ID_SEQ">
-      <ObjectId>20250</ObjectId>
-      <CreatedTimestamp>2021-09-29.20:46:13</CreatedTimestamp>
-      <ModifiedTimestamp>2021-09-29.20:46:13</ModifiedTimestamp>
-      <SequenceIdentity>1(100000000000000006)</SequenceIdentity>
-      <CacheSize>-2147483648</CacheSize>
-    </sequence>
-    <sequence id="46" parent="7" name="ACCOUNT_TX_SEQ">
-      <ObjectId>20243</ObjectId>
-      <CreatedTimestamp>2021-09-29.19:11:43</CreatedTimestamp>
-      <ModifiedTimestamp>2021-09-29.19:11:43</ModifiedTimestamp>
-      <SequenceIdentity>1(21)</SequenceIdentity>
-    </sequence>
-    <sequence id="47" parent="7" name="ACCOUNT_TYPE_ID_SEQ">
-      <ObjectId>20249</ObjectId>
-      <CreatedTimestamp>2021-09-29.20:46:03</CreatedTimestamp>
-      <ModifiedTimestamp>2021-09-29.20:46:03</ModifiedTimestamp>
-      <SequenceIdentity>1(100000000000000021)</SequenceIdentity>
-      <CacheSize>-2147483648</CacheSize>
-    </sequence>
-    <sequence id="48" parent="7" name="ACCOUNT_TYPE_SEQ">
-      <ObjectId>20239</ObjectId>
-      <CreatedTimestamp>2021-09-29.19:01:16</CreatedTimestamp>
-      <ModifiedTimestamp>2021-09-29.19:01:16</ModifiedTimestamp>
-      <SequenceIdentity>1(1)</SequenceIdentity>
-    </sequence>
-    <sequence id="49" parent="7" name="ACCOUNT_TYPE_SEQ1">
-      <ObjectId>20241</ObjectId>
-      <CreatedTimestamp>2021-09-29.19:08:15</CreatedTimestamp>
-      <ModifiedTimestamp>2021-09-29.19:08:15</ModifiedTimestamp>
-      <SequenceIdentity>1(41)</SequenceIdentity>
-    </sequence>
-    <sequence id="50" parent="7" name="DISCOVERY_12_SEQ">
-      <ObjectId>20577</ObjectId>
-      <CreatedTimestamp>2021-10-08.20:19:13</CreatedTimestamp>
-      <ModifiedTimestamp>2021-10-08.20:19:13</ModifiedTimestamp>
-      <SequenceIdentity>1(100060)+12</SequenceIdentity>
-      <Ordered>1</Ordered>
-      <CacheSize>-2147483648</CacheSize>
-    </sequence>
-    <sequence id="51" parent="7" name="DISCOVERY_SEQ">
-      <ObjectId>20574</ObjectId>
-      <CreatedTimestamp>2021-10-08.18:25:00</CreatedTimestamp>
-      <ModifiedTimestamp>2021-10-08.18:25:00</ModifiedTimestamp>
-      <SequenceIdentity>1(13)</SequenceIdentity>
-      <Ordered>1</Ordered>
-      <CacheSize>-2147483648</CacheSize>
-    </sequence>
-    <table id="52" parent="7" name="ACCOUNT_TX">
-      <ObjectId>20065</ObjectId>
-      <CreatedTimestamp>2021-09-23.12:38:55</CreatedTimestamp>
-      <ModifiedTimestamp>2021-10-08.22:48:08</ModifiedTimestamp>
+    <table id="45" parent="7" name="ACCOUNT_TX">
+      <ObjectId>20675</ObjectId>
+      <CreatedTimestamp>2021-10-09.17:53:09</CreatedTimestamp>
+      <ModifiedTimestamp>2021-10-09.17:53:09</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="53" parent="7" name="ACCOUNT_TX_DETAILS">
-      <ObjectId>20565</ObjectId>
-      <CreatedTimestamp>2021-10-06.19:36:29</CreatedTimestamp>
-      <ModifiedTimestamp>2021-10-08.20:56:19</ModifiedTimestamp>
+    <table id="46" parent="7" name="ACCOUNT_TX_DETAILS">
+      <ObjectId>20677</ObjectId>
+      <CreatedTimestamp>2021-10-09.17:53:09</CreatedTimestamp>
+      <ModifiedTimestamp>2021-10-09.17:53:09</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="54" parent="7" name="ACCOUNT_TYPE">
-      <ObjectId>20063</ObjectId>
-      <CreatedTimestamp>2021-09-23.12:35:06</CreatedTimestamp>
-      <ModifiedTimestamp>2021-10-08.19:58:39</ModifiedTimestamp>
+    <table id="47" parent="7" name="ACCOUNT_TYPE">
+      <ObjectId>20672</ObjectId>
+      <CreatedTimestamp>2021-10-09.17:53:09</CreatedTimestamp>
+      <ModifiedTimestamp>2021-10-09.17:53:09</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <data-file id="55" parent="21" name="C:\ORACLEXE\APP\ORACLE\ORADATA\XE\SYSTEM.DBF">
+    <data-file id="48" parent="21" name="C:\ORACLEXE\APP\ORACLE\ORADATA\XE\SYSTEM.DBF">
       <Position>1</Position>
       <FileId>1</FileId>
       <FileSize>47360</FileSize>
@@ -299,7 +250,7 @@
       <AvailabilityStatus>A</AvailabilityStatus>
       <OnlineStatus>S</OnlineStatus>
     </data-file>
-    <data-file id="56" parent="22" name="C:\ORACLEXE\APP\ORACLE\ORADATA\XE\SYSAUX.DBF">
+    <data-file id="49" parent="22" name="C:\ORACLEXE\APP\ORACLE\ORADATA\XE\SYSAUX.DBF">
       <Position>2</Position>
       <FileId>2</FileId>
       <FileSize>87040</FileSize>
@@ -310,7 +261,7 @@
       <AvailabilityStatus>A</AvailabilityStatus>
       <OnlineStatus>E</OnlineStatus>
     </data-file>
-    <data-file id="57" parent="23" name="C:\ORACLEXE\APP\ORACLE\ORADATA\XE\UNDOTBS1.DBF">
+    <data-file id="50" parent="23" name="C:\ORACLEXE\APP\ORACLE\ORADATA\XE\UNDOTBS1.DBF">
       <Position>3</Position>
       <FileId>3</FileId>
       <FileSize>48640</FileSize>
@@ -321,7 +272,7 @@
       <AvailabilityStatus>A</AvailabilityStatus>
       <OnlineStatus>E</OnlineStatus>
     </data-file>
-    <data-file id="58" parent="24" name="C:\ORACLEXE\APP\ORACLE\ORADATA\XE\TEMP.DBF">
+    <data-file id="51" parent="24" name="C:\ORACLEXE\APP\ORACLE\ORADATA\XE\TEMP.DBF">
       <Position>1</Position>
       <FileId>1</FileId>
       <FileSize>2560</FileSize>
@@ -330,7 +281,7 @@
       <MaxSize>4194302</MaxSize>
       <AutoExtensible>1</AutoExtensible>
     </data-file>
-    <data-file id="59" parent="25" name="C:\ORACLEXE\APP\ORACLE\ORADATA\XE\USERS.DBF">
+    <data-file id="52" parent="25" name="C:\ORACLEXE\APP\ORACLE\ORADATA\XE\USERS.DBF">
       <Position>4</Position>
       <FileId>4</FileId>
       <FileSize>12800</FileSize>
@@ -341,157 +292,151 @@
       <AvailabilityStatus>A</AvailabilityStatus>
       <OnlineStatus>E</OnlineStatus>
     </data-file>
-    <column id="60" parent="52" name="ACCOUNT_TX_ID">
+    <column id="53" parent="45" name="TX_ID">
       <Position>1</Position>
-      <DataType>NUMBER(20 digit)|0s</DataType>
+      <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>NULL</DefaultExpression>
     </column>
-    <column id="61" parent="52" name="ACCOUNT_TYPE_ID">
+    <column id="54" parent="45" name="ACCOUNT_TYPE_ID">
       <Position>2</Position>
-      <DataType>NUMBER(20 digit)|0s</DataType>
+      <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="62" parent="52" name="MEMBER_ID">
+    <column id="55" parent="45" name="MEMBER_ID">
       <Position>3</Position>
-      <DataType>NUMBER(15 digit)|0s</DataType>
+      <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="63" parent="52" name="AMOUNT">
+    <column id="56" parent="45" name="AMOUNT">
       <Position>4</Position>
-      <DataType>FLOAT(16 digit)|0s</DataType>
+      <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="64" parent="52" name="TX_DATE">
+    <column id="57" parent="45" name="TX_DATE">
       <Position>5</Position>
       <DataType>DATE|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="65" parent="52" name="ACCOUNT_TX_PK">
-      <ObjectId>20247</ObjectId>
-      <CreatedTimestamp>2021-09-29.19:56:49</CreatedTimestamp>
-      <ModifiedTimestamp>2021-09-29.19:56:49</ModifiedTimestamp>
+    <index id="58" parent="45" name="SYS_C007175">
+      <ObjectId>20676</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2021-10-09.17:53:09</CreatedTimestamp>
+      <ModifiedTimestamp>2021-10-09.17:53:09</ModifiedTimestamp>
       <TablespaceName>SYSTEM</TablespaceName>
-      <ColNames>ACCOUNT_TX_ID</ColNames>
+      <ColNames>TX_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="66" parent="52" name="ACCOUNT_TYPE_ID_FK">
-      <ObjectId>20069</ObjectId>
-      <CreatedTimestamp>2021-09-23.12:45:21</CreatedTimestamp>
-      <ModifiedTimestamp>2021-09-23.12:45:21</ModifiedTimestamp>
-      <TablespaceName>SYSTEM</TablespaceName>
+    <key id="59" parent="45" name="SYS_C007175">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2021-10-09.17:53:09</ModifiedTimestamp>
+      <ColNames>TX_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SYS_C007175</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="60" parent="45" name="FK_AMOUNT_TYPE_ID">
+      <ModifiedTimestamp>2021-10-09.17:53:09</ModifiedTimestamp>
       <ColNames>ACCOUNT_TYPE_ID</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="67" parent="52" name="ACCOUNT_TX_PK">
-      <ModifiedTimestamp>2021-09-29.19:56:49</ModifiedTimestamp>
-      <ColNames>ACCOUNT_TX_ID</ColNames>
-      <InitiallyDeferred>1</InitiallyDeferred>
-      <UnderlyingIndexName>ACCOUNT_TX_PK</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <trigger id="68" parent="52" name="ACCOUNT_TX_TRG">
-      <ObjectId>20244</ObjectId>
-      <SourceTextLength>75</SourceTextLength>
-      <WithDebugInfo>1</WithDebugInfo>
-      <CreatedTimestamp>2021-09-29.19:11:43</CreatedTimestamp>
-      <ModifiedTimestamp>2021-10-06.23:50:36</ModifiedTimestamp>
-      <Events>I</Events>
-      <Turn>before-row</Turn>
-    </trigger>
-    <column id="69" parent="53" name="ACCOUNT_TX_DETAILS_ID">
-      <Position>1</Position>
-      <DataType>NUMBER(18 digit)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="70" parent="53" name="ACCOUNT_TX_ID">
-      <Position>2</Position>
-      <DataType>NUMBER(18 digit)|0s</DataType>
-    </column>
-    <column id="71" parent="53" name="PARTNER_NAME">
-      <Position>3</Position>
-      <DataType>VARCHAR2(20 byte)|0s</DataType>
-    </column>
-    <column id="72" parent="53" name="NUMBER_OF_ITEMS">
-      <Position>4</Position>
-      <DataType>NUMBER(9 digit)|0s</DataType>
-    </column>
-    <index id="73" parent="53" name="ACCOUNT_TX_DETAILS_ID_PK">
-      <ObjectId>20566</ObjectId>
-      <CreatedTimestamp>2021-10-06.19:37:24</CreatedTimestamp>
-      <ModifiedTimestamp>2021-10-06.19:37:24</ModifiedTimestamp>
-      <TablespaceName>SYSTEM</TablespaceName>
-      <ColNames>ACCOUNT_TX_DETAILS_ID</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="74" parent="53" name="ACCOUNT_TX_DETAILS_ID_PK">
-      <ModifiedTimestamp>2021-10-06.19:37:24</ModifiedTimestamp>
-      <ColNames>ACCOUNT_TX_DETAILS_ID</ColNames>
-      <InitiallyDeferred>1</InitiallyDeferred>
-      <UnderlyingIndexName>ACCOUNT_TX_DETAILS_ID_PK</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="75" parent="53" name="ACCOUNT_TX_DETAILS_ID_FK1">
-      <ModifiedTimestamp>2021-10-06.19:37:58</ModifiedTimestamp>
-      <ColNames>ACCOUNT_TX_ID</ColNames>
-      <RefTableName>ACCOUNT_TX</RefTableName>
-      <RefKeyName>ACCOUNT_TX_PK</RefKeyName>
+      <RefTableName>ACCOUNT_TYPE</RefTableName>
+      <RefKeyName>SYS_C007168</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="76" parent="54" name="ACCOUNT_TYPE_ID">
+    <column id="61" parent="46" name="ACCOUNT_TX_DETAILS_ID">
       <Position>1</Position>
-      <DataType>NUMBER(20 digit)|0s</DataType>
+      <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="77" parent="54" name="MNEMONIC">
+    <column id="62" parent="46" name="TX_ID">
       <Position>2</Position>
-      <DataType>VARCHAR2(50 byte)|0s</DataType>
+      <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="78" parent="54" name="ACCOUNT_TYPE_NAME">
+    <column id="63" parent="46" name="PARTNER_NAME">
       <Position>3</Position>
-      <DataType>VARCHAR2(50 byte)|0s</DataType>
+      <DataType>VARCHAR2(255 byte)|0s</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="79" parent="54" name="CREATION_DATE">
+    <column id="64" parent="46" name="NUMBER_OF_ITEMS">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="65" parent="46" name="SYS_C007181">
+      <ObjectId>20678</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2021-10-09.17:53:09</CreatedTimestamp>
+      <ModifiedTimestamp>2021-10-09.17:53:09</ModifiedTimestamp>
+      <TablespaceName>SYSTEM</TablespaceName>
+      <ColNames>ACCOUNT_TX_DETAILS_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="66" parent="46" name="SYS_C007181">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2021-10-09.17:53:09</ModifiedTimestamp>
+      <ColNames>ACCOUNT_TX_DETAILS_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SYS_C007181</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="67" parent="46" name="FK_AMOUNT_TX_ID">
+      <ModifiedTimestamp>2021-10-09.17:53:09</ModifiedTimestamp>
+      <ColNames>TX_ID</ColNames>
+      <RefTableName>ACCOUNT_TX</RefTableName>
+      <RefKeyName>SYS_C007175</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <column id="68" parent="47" name="ACCOUNT_TYPE_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="69" parent="47" name="MNEMONIC">
+      <Position>2</Position>
+      <DataType>VARCHAR2(100 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="70" parent="47" name="ACCOUNT_TYPE_NAME">
+      <Position>3</Position>
+      <DataType>VARCHAR2(255 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="71" parent="47" name="CREATION_DATE">
       <Position>4</Position>
       <DataType>DATE|0s</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="80" parent="54" name="CURRENCY">
-      <Position>5</Position>
-      <DataType>VARCHAR2(4 byte)|0s</DataType>
-    </column>
-    <index id="81" parent="54" name="ACCOUNT_TYPE_PK">
-      <ObjectId>20576</ObjectId>
-      <CreatedTimestamp>2021-10-08.19:58:39</CreatedTimestamp>
-      <ModifiedTimestamp>2021-10-08.19:58:39</ModifiedTimestamp>
+    <index id="72" parent="47" name="SYS_C007168">
+      <ObjectId>20673</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2021-10-09.17:53:09</CreatedTimestamp>
+      <ModifiedTimestamp>2021-10-09.17:53:09</ModifiedTimestamp>
       <TablespaceName>SYSTEM</TablespaceName>
       <ColNames>ACCOUNT_TYPE_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="82" parent="54" name="ACCOUNT_TYPE_PK">
-      <ModifiedTimestamp>2021-10-08.19:58:39</ModifiedTimestamp>
+    <index id="73" parent="47" name="SYS_C007169">
+      <ObjectId>20674</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2021-10-09.17:53:09</CreatedTimestamp>
+      <ModifiedTimestamp>2021-10-09.17:53:09</ModifiedTimestamp>
+      <TablespaceName>SYSTEM</TablespaceName>
+      <ColNames>MNEMONIC</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="74" parent="47" name="SYS_C007168">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2021-10-09.17:53:09</ModifiedTimestamp>
       <ColNames>ACCOUNT_TYPE_ID</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
-      <UnderlyingIndexName>ACCOUNT_TYPE_PK</UnderlyingIndexName>
+      <UnderlyingIndexName>SYS_C007168</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <trigger id="83" parent="54" name="ACCOUNT_TYPE_TRG">
-      <ObjectId>20240</ObjectId>
-      <SourceTextLength>75</SourceTextLength>
-      <WithDebugInfo>1</WithDebugInfo>
-      <CreatedTimestamp>2021-09-29.19:01:16</CreatedTimestamp>
-      <ModifiedTimestamp>2021-09-29.20:52:35</ModifiedTimestamp>
-      <Events>I</Events>
-      <Turn>before-row</Turn>
-    </trigger>
-    <trigger id="84" parent="54" name="ACCOUNT_TYPE_TRG1">
-      <ObjectId>20242</ObjectId>
-      <SourceTextLength>75</SourceTextLength>
-      <WithDebugInfo>1</WithDebugInfo>
-      <CreatedTimestamp>2021-09-29.19:08:15</CreatedTimestamp>
-      <ModifiedTimestamp>2021-10-02.20:26:51</ModifiedTimestamp>
-      <Events>I</Events>
-      <Turn>before-row</Turn>
-    </trigger>
+    <key id="75" parent="47" name="SYS_C007169">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2021-10-09.17:53:09</ModifiedTimestamp>
+      <ColNames>MNEMONIC</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SYS_C007169</UnderlyingIndexName>
+    </key>
   </database-model>
 </dataSource>

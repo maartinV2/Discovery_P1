@@ -2,6 +2,7 @@ package za.ac.nwu.ac.logic.flow.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import za.ac.nwu.ac.domain.dto.AccountTransactionDto;
 import za.ac.nwu.ac.domain.persistence.AccountTransaction;
@@ -11,7 +12,7 @@ import za.ac.nwu.ac.translator.AccountTransactionTranslator;
 import java.util.ArrayList;
 import java.util.List;
 
-@Transactional
+@Transactional(propagation = Propagation.REQUIRED)
 @Component
 public class FetchAccountTransactionFlowImpl implements FetchAccountTransactionFlow {
 

@@ -19,7 +19,7 @@ public class AccountTransactionDto implements Serializable {
     private Long transactionId;
     private String mnemonic;
     private Long memberId;
-    private double amount;
+    private Long amount;
     private LocalDate transactionDate;
     private AccountTransactionDetailsDto detailsDto;
 
@@ -27,7 +27,7 @@ public class AccountTransactionDto implements Serializable {
 
     }
 
-    public AccountTransactionDto(Long transactionId, String mnemonic, Long memberId, Double amount, LocalDate transactionDate) {
+    public AccountTransactionDto(Long transactionId, String mnemonic, Long memberId, Long amount, LocalDate transactionDate) {
         this.transactionId = transactionId;
         this.mnemonic = mnemonic;
         this.memberId = memberId;
@@ -39,7 +39,7 @@ public class AccountTransactionDto implements Serializable {
     //FromDomain
     public AccountTransactionDto(AccountTransaction accountTransaction) {
         this.transactionId = accountTransaction.getTransactionId();
-        this.mnemonic =accountTransaction.getAccountType().getMnemonic(); ;
+        this.mnemonic =accountTransaction.getAccountType().getMnemonic();
         this.memberId = accountTransaction.getMemberId();
         this.amount = accountTransaction.getAmount();
         this.transactionDate = accountTransaction.getTransactionDate();
@@ -105,11 +105,11 @@ public class AccountTransactionDto implements Serializable {
             dataType = "java.lang.String",
             example = "200",
             required = true)
-    public double getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(Long amount) {
         this.amount = amount;
     }
 
@@ -145,17 +145,18 @@ public class AccountTransactionDto implements Serializable {
         return  new AccountTransaction(this.getTransactionId(),accountType,this.getMemberId(),this.getAmount(),this.getTransactionDate());
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccountTransactionDto that = (AccountTransactionDto) o;
-        return Double.compare(that.amount, amount) == 0 && Objects.equals(transactionId, that.transactionId) && Objects.equals(mnemonic, that.mnemonic) && Objects.equals(memberId, that.memberId) && Objects.equals(transactionDate, that.transactionDate);
+        return Objects.equals(transactionId, that.transactionId) && Objects.equals(mnemonic, that.mnemonic) && Objects.equals(memberId, that.memberId) && Objects.equals(amount, that.amount) && Objects.equals(transactionDate, that.transactionDate) && Objects.equals(detailsDto, that.detailsDto);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(transactionId, mnemonic, memberId, amount, transactionDate);
+        return Objects.hash(transactionId, mnemonic, memberId, amount, transactionDate, detailsDto);
     }
 
     @Override
@@ -166,6 +167,7 @@ public class AccountTransactionDto implements Serializable {
                 ", memberId=" + memberId +
                 ", amount=" + amount +
                 ", transactionDate=" + transactionDate +
+                ", detailsDto=" + detailsDto +
                 '}';
     }
 }

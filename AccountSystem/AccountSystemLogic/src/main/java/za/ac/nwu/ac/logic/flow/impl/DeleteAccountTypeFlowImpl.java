@@ -2,12 +2,12 @@ package za.ac.nwu.ac.logic.flow.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import za.ac.nwu.ac.domain.dto.AccountTypeDto;
 import za.ac.nwu.ac.logic.flow.DeleteAccountTypeFlow;
 import za.ac.nwu.ac.translator.AccountTypeTranslator;
 
-@Transactional
+@Transactional(propagation = Propagation.REQUIRED)
 @Component("deleteAccountTypeFlowName")
 public class DeleteAccountTypeFlowImpl implements DeleteAccountTypeFlow {
 

@@ -42,6 +42,7 @@ public class AccountTransactionController {
     public  ResponseEntity<GeneralResponse<AccountTransactionDto>> create(
             @ApiParam(value = "Request body to create a new Transaction", required = true)
             @RequestBody AccountTransactionDto accountTransactionDto){
+        System.out.println("1 Controller");
         AccountTransactionDto accountTransactionsResponse = createAccountTransactionFlow.create(accountTransactionDto);
         GeneralResponse<AccountTransactionDto> response = new GeneralResponse<>(true ,accountTransactionsResponse);
         return  new ResponseEntity<>(response, HttpStatus.CREATED);

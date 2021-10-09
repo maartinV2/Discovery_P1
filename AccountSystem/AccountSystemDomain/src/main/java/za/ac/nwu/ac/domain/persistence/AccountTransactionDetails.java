@@ -38,15 +38,15 @@ public class AccountTransactionDetails implements Serializable {
     }
 
     @Id
-    @SequenceGenerator(name = "DISCOVERY_SEQ", sequenceName = "CMPG323.DISCOVERY_SEQ", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DISCOVERY_SEQ")
+    @SequenceGenerator(name = "ACCOUNT_SEQ", sequenceName = "CMPG323.ACCOUNT_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACCOUNT_SEQ")
     @Column(name = "ACCOUNT_TX_DETAILS_ID")
     public Long getAccountTransactionDetailsId() {
         return accountTransactionDetailsId;
     }
 
     @OneToOne(fetch =FetchType.LAZY)
-    @JoinColumn(name="ACCOUNT_TX_ID")
+    @JoinColumn(name="TX_ID")
     public AccountTransaction getAccountTransaction() {return accountTransaction;}
 
     @Column(name = "PARTNER_NAME")

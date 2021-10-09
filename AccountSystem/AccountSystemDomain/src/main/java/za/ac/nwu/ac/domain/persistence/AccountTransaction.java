@@ -1,7 +1,5 @@
 package za.ac.nwu.ac.domain.persistence;
 
-import za.ac.nwu.ac.domain.dto.AccountTransactionDto;
-import za.ac.nwu.ac.domain.persistence.AccountTransactionDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,7 +16,7 @@ public class AccountTransaction implements Serializable {
     private  Long transactionId;
     private  AccountType accountType;
     private  Long memberId;
-    private  Double amount;
+    private  Long amount;
     private  LocalDate transactionDate;
 
     private  AccountTransactionDetails details;
@@ -28,7 +26,7 @@ public class AccountTransaction implements Serializable {
     }
 
 
-    public AccountTransaction(Long transactionId, AccountType accountType, Long memberId, Double amount, LocalDate transactionDate) {
+    public AccountTransaction(Long transactionId, AccountType accountType, Long memberId, Long amount, LocalDate transactionDate) {
         this.transactionId = transactionId;
         this.accountType = accountType;
         this.memberId = memberId;
@@ -37,9 +35,9 @@ public class AccountTransaction implements Serializable {
     }
 
     @Id
-    @SequenceGenerator(name = "ACCOUNT_TX_ID_SEQ", sequenceName = "CMPG323.ACCOUNT_TX_ID_SEQ",allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "ACCOUNT_TX_ID_SEQ")
-    @Column(name = "ACCOUNT_TX_ID")
+    @SequenceGenerator(name = "ACCOUNT_SEQ", sequenceName = "CMPG323.ACCOUNT_SEQ",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "ACCOUNT_SEQ")
+    @Column(name = "TX_ID")
     public Long getTransactionId() {
         return transactionId;
     }
@@ -50,7 +48,7 @@ public class AccountTransaction implements Serializable {
     }
 
     @Column(name = "AMOUNT")
-    public Double getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
@@ -66,7 +64,7 @@ public class AccountTransaction implements Serializable {
     }
 
 
-    @OneToOne(targetEntity = AccountTransactionDetails.class, fetch = FetchType.LAZY,mappedBy = "accountTransaction",orphanRemoval = true,cascade = CascadeType.PERSIST)
+    @OneToOne(targetEntity = AccountTransactionDetails.class, fetch = FetchType.LAZY,mappedBy = "accountTransaction"/*,orphanRemoval = true,cascade = CascadeType.PERSIST*/)
     public AccountTransactionDetails getDetails() {return details;}
 
 
@@ -78,7 +76,7 @@ public class AccountTransaction implements Serializable {
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
     }
-    public void setAmount(Double amount) {this.amount = amount;}
+    public void setAmount(Long amount) {this.amount = amount;}
     public void setTransactionDate(LocalDate transactionDate) {
         this.transactionDate = transactionDate;
     }
