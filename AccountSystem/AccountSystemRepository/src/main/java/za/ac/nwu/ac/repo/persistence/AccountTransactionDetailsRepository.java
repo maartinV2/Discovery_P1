@@ -22,5 +22,10 @@ public interface AccountTransactionDetailsRepository extends JpaRepository<Accou
     int updateByTransactionId(Long transactionId,Long numberOfItems, String partnerName);
 
 
-
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM AccountTransactionDetails atd WHERE atd.accountTransaction.transactionId = :transactionId")
+    int deleteByTransactionId(Long transactionId);
 }
+
+

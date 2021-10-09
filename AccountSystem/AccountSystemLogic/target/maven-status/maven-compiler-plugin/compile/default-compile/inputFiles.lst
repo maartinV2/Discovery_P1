@@ -1,6 +1,8 @@
 C:\Development\repo\Discovery_P1\AccountSystem\AccountSystemLogic\src\main\java\za\ac\nwu\ac\logic\flow\impl\CreateAccountTypeFlowImpl.java
 C:\Development\repo\Discovery_P1\AccountSystem\AccountSystemLogic\src\main\java\za\ac\nwu\ac\logic\config\LogicConfig.java
 C:\Development\repo\Discovery_P1\AccountSystem\AccountSystemLogic\src\main\java\za\ac\nwu\ac\logic\flow\FetchAccountTransactionFlow.java
+C:\Development\repo\Discovery_P1\AccountSystem\AccountSystemLogic\src\main\java\za\ac\nwu\ac\logic\flow\DeleteAccountTransactionFlow.java
+C:\Development\repo\Discovery_P1\AccountSystem\AccountSystemLogic\src\main\java\za\ac\nwu\ac\logic\flow\impl\DeleteAccountTransactionFlowImpl.java
 C:\Development\repo\Discovery_P1\AccountSystem\AccountSystemLogic\src\main\java\za\ac\nwu\ac\logic\flow\CreateAccountTypeFlow.java
 C:\Development\repo\Discovery_P1\AccountSystem\AccountSystemLogic\src\main\java\za\ac\nwu\ac\logic\flow\impl\FetchAccountTypeFlowImpl.java
 C:\Development\repo\Discovery_P1\AccountSystem\AccountSystemLogic\src\main\java\za\ac\nwu\ac\logic\flow\impl\DeleteAccountTypeFlowImpl.java

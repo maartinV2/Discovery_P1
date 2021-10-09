@@ -51,5 +51,10 @@ public class AccountTransactionDetailsTranslatorImpl implements AccountTransacti
         }
     }
 
+    @Override
+    public int deleteByTransactionId(Long transactionId) {
+      return   accountTransactionDetailsRepository.deleteByTransactionId(transactionId);
+    }
+
 
 }

@@ -79,6 +79,21 @@ public class AccountTransactionTranslatorImpl implements AccountTransactionTrans
         }
     }
 
+    @Override
+    public  int deleteAccountTypeByTransactionId(Long transactionId) {
+
+        try {
+
+            int response  = accountTransactionRepository.deleteAccountTypeByTransactionId(transactionId);
+            return  response;
+
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to read from DB ", e);
+
+        }
+
+    }
+
 
 
 

@@ -15,7 +15,10 @@ public interface AccountTransactionTranslator {
     AccountTransaction save(AccountTransaction accountTransaction);
 
     int update(AccountTransaction accountTransaction, Long transactionId);
+
+    int deleteAccountTypeByTransactionId(Long transactionId);
 }
+
 
 
 

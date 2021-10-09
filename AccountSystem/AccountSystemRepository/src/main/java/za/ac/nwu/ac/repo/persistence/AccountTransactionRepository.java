@@ -18,4 +18,10 @@ public interface AccountTransactionRepository extends JpaRepository<AccountTrans
     @Query("UPDATE AccountTransaction t SET t.accountType.accountTypeId= :accountTypeId, t.memberId= :memberId , t.transactionDate= :transactionDate, t.amount= :amount   WHERE t.transactionId = :transactionId")
     int updateByTransactionId(Long transactionId,Long accountTypeId, Long memberId, Number amount, LocalDate transactionDate);
 
+
+
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM AccountTransaction t WHERE t.transactionId = :transactionId")
+    int deleteAccountTypeByTransactionId(Long transactionId);
 }

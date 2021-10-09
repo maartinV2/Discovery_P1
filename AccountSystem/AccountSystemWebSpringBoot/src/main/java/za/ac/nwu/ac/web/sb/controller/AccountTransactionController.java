@@ -23,14 +23,19 @@ public class AccountTransactionController {
     private final FetchAccountTransactionFlow fetchAccountTransactionFlow;
     private final CreateAccountTransactionFlow createAccountTransactionFlow;
     private final UpdateAccountTransactionFlow updateAccountTransactionFlow;
+    private final DeleteAccountTransactionFlow deleteAccountTransactionFlow;
 
 
 
     @Autowired
-    public AccountTransactionController(FetchAccountTransactionFlow fetchAccountTransactionFlow, CreateAccountTransactionFlow createAccountTransactionFlow,UpdateAccountTransactionFlow updateAccountTransactionFlow) {
+    public AccountTransactionController(FetchAccountTransactionFlow fetchAccountTransactionFlow,
+                                        CreateAccountTransactionFlow createAccountTransactionFlow,
+                                        UpdateAccountTransactionFlow updateAccountTransactionFlow,
+                                        DeleteAccountTransactionFlow deleteAccountTransactionFlow) {
         this.fetchAccountTransactionFlow= fetchAccountTransactionFlow;
         this.createAccountTransactionFlow =createAccountTransactionFlow;
         this.updateAccountTransactionFlow= updateAccountTransactionFlow;
+        this.deleteAccountTransactionFlow= deleteAccountTransactionFlow;
     }
 
     @PostMapping("")
@@ -87,6 +92,28 @@ public class AccountTransactionController {
         int accountTypeResponse = updateAccountTransactionFlow.update(accountTransactionDto,transactionId);
         GeneralResponse<AccountTransactionDto> response = new GeneralResponse(true ,accountTypeResponse);
         return  new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+
+    @DeleteMapping ("/{transactionId}")
+    @ApiOperation(value="Deletes the configured Account type that matches the transactionId in the url." , notes="Returns account type")
+    @ApiResponses(value={
+            @ApiResponse(code=200, message = "Account type returned", response = GeneralResponse.class),
+            @ApiResponse(code=400, message = "Bad Request", response = GeneralResponse.class),
+            @ApiResponse(code=404, message = "Not Found", response = GeneralResponse.class),
+            @ApiResponse(code=500, message = "Internal Server Error", response = GeneralResponse.class)
+    })
+
+    public ResponseEntity<GeneralResponse<List<AccountTransactionDto>>> deleteAccountTransactionByAccountId(
+            @ApiParam(value = "The transactionId that uniquely identifies the AccountTransaction.",
+                    example = "50018",
+                    name = "transactionId",
+                    required = true)
+            @PathVariable("transactionId") final Long transactionId){
+
+        int payload= deleteAccountTransactionFlow.deleteAccountTransactionByTransactionId(transactionId);
+        GeneralResponse<List<AccountTypeDto>> response= new GeneralResponse(true,payload);
+        return new ResponseEntity(response, HttpStatus.OK);
     }
 
 }
