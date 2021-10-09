@@ -1,8 +1,8 @@
 package za.ac.nwu.ac.translator;
 
 import za.ac.nwu.ac.domain.dto.AccountTransactionDto;
-import za.ac.nwu.ac.domain.dto.AccountTypeDto;
 import za.ac.nwu.ac.domain.persistence.AccountTransaction;
+import za.ac.nwu.ac.domain.persistence.AccountType;
 
 import java.util.List;
 
@@ -17,6 +17,8 @@ public interface AccountTransactionTranslator {
     int update(AccountTransaction accountTransaction, Long transactionId);
 
     int deleteAccountTypeByTransactionId(Long transactionId);
+
+    List<AccountTransactionDto> getByAccountType(AccountType accountType);
 }
 
 

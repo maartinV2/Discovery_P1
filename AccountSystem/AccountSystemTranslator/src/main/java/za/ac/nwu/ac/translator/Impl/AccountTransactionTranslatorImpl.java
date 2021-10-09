@@ -9,7 +9,6 @@ import za.ac.nwu.ac.domain.persistence.AccountType;
 import za.ac.nwu.ac.translator.AccountTransactionTranslator;
 import za.ac.nwu.ac.repo.persistence.AccountTransactionRepository;
 
-import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +91,22 @@ public class AccountTransactionTranslatorImpl implements AccountTransactionTrans
 
         }
 
+    }
+
+
+    @Override
+    public List<AccountTransactionDto> getByAccountType(AccountType accountType) {
+        List<AccountTransactionDto> AccountTransactionDtos = new ArrayList<>();
+        try {
+            for ( AccountTransaction accountTransaction : accountTransactionRepository.findByAccountType(accountType)) {
+                AccountTransactionDto accountTransactionDto= new AccountTransactionDto(accountTransaction);
+                AccountTransactionDtos.add(accountTransactionDto);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to read from DB ", e);
+
+        }
+        return  AccountTransactionDtos;
     }
 
 
