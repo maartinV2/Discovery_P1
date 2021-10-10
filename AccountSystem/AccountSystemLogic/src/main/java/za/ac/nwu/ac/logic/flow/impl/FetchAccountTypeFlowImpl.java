@@ -1,5 +1,7 @@
 package za.ac.nwu.ac.logic.flow.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
@@ -16,6 +18,8 @@ import java.util.List;
 @Component
 public class FetchAccountTypeFlowImpl implements FetchAccountTypeFlow {
 
+    private  static  final Logger LOGGER = LoggerFactory.getLogger(CreateAccountTransactionFlowImpl.class);
+
     private  final AccountTypeTranslator accountTypeTranslator;
 
     @Autowired
@@ -24,11 +28,14 @@ public class FetchAccountTypeFlowImpl implements FetchAccountTypeFlow {
     }
     @Override
     public  List<AccountTypeDto> getAllAccountTypes(){
+        LOGGER.info("get all account types endpoint reached");
+
         return accountTypeTranslator.getAllAccountTypes();
 }
 
     @Override
     public  AccountTypeDto getAccountTypeByMnemonic(String mnemonic){
+        LOGGER.info("get all account types byMnemonic endpoint reached : {}",mnemonic);
         return accountTypeTranslator.getAccountTypeByMnemonic(mnemonic);
     }
     @Override

@@ -1,5 +1,7 @@
 package za.ac.nwu.ac.logic.flow.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,8 @@ import za.ac.nwu.ac.translator.AccountTransactionTranslator;
 @Component("UpdateTransactionFlow")
 public class UpdateAccountTransactionFlowImpl implements UpdateAccountTransactionFlow {
 
+    private  static  final Logger LOGGER = LoggerFactory.getLogger(CreateAccountTransactionFlowImpl.class);
+
     private final AccountTransactionTranslator accountTransactionTranslator;
     private final AccountTransactionDetailsTranslator accountTransactionDetailsTranslator;
     private final FetchAccountTypeFlow fetchAccountTypeFlow;
@@ -32,6 +36,8 @@ public class UpdateAccountTransactionFlowImpl implements UpdateAccountTransactio
 
     @Override
     public int update(AccountTransactionDto accountTransactionDto, Long transactionId ){
+
+        LOGGER.info("update transaction input info transactionId: {}",transactionId);
 
         AccountType accountType = fetchAccountTypeFlow.getAccountTypeDbEntityByMnemonic(
                 accountTransactionDto.getMnemonic());

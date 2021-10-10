@@ -1,5 +1,7 @@
 package za.ac.nwu.ac.logic.flow.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,8 @@ import za.ac.nwu.ac.translator.AccountTransactionTranslator;
 @Component
 public class CreateAccountTransactionFlowImpl implements CreateAccountTransactionFlow {
 
+    private  static  final Logger LOGGER = LoggerFactory.getLogger(CreateAccountTransactionFlowImpl.class);
+
     private final AccountTransactionTranslator accountTransactionTranslator;
     private final AccountTransactionDetailsTranslator accountTransactionDetailsTranslator;
     private final FetchAccountTypeFlow fetchAccountTypeFlow;
@@ -30,6 +34,9 @@ public class CreateAccountTransactionFlowImpl implements CreateAccountTransactio
 
     @Override
     public AccountTransactionDto create(AccountTransactionDto accountTransactionDto){
+
+        LOGGER.info("TRANSACTION INFO RECEIVED: {}",accountTransactionDto);
+
         accountTransactionDto.setTransactionId(null);
 
         AccountType accountType = fetchAccountTypeFlow.getAccountTypeDbEntityByMnemonic(
@@ -47,25 +54,7 @@ public class CreateAccountTransactionFlowImpl implements CreateAccountTransactio
     }
 
 
-//    @Override
-//    public AccountTransactionDto create(AccountTransactionDto accountTransactionDto){
-//        accountTransactionDto.setTransactionId(null);
-//        System.out.println("2 CREATETRANSACTIONFLOW");
-//        AccountType accountType = fetchAccountTypeFlow.getAccountTypeDbEntityByMnemonic(accountTransactionDto.getMnemonic());
-//        AccountTransaction accountTransaction =accountTransactionDto.ToDomain(accountType);
-//        System.out.println("3 CREATETRANSACTIONFLOW ACCOUNTTYPE"+ accountType);
-//        //Case 5 with cascade dont save mannully link both ways
-//      if(null != accountTransactionDto.getDetailsDto()) {
-//          AccountTransactionDetails accountTransactionDetails =accountTransactionDto.getDetailsDto().ToDomain(accountTransaction);
-//          accountTransaction.setDetails(accountTransactionDetails);
-//      }
-//        System.out.println("4 CREATE TRANSACTIONFLOW ACCOUNTTYPE details"+ accountTransaction.getDetails());
-//      AccountTransaction createdAccountTransaction = accountTransactionTranslator.save(accountTransaction);
-//
-//
-//
-//         return new AccountTransactionDto();
-//    }
+
 
 }
 

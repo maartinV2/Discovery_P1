@@ -1,5 +1,7 @@
 package za.ac.nwu.ac.logic.flow.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
@@ -19,6 +21,8 @@ import java.util.List;
 @Component
 public class FetchAccountTransactionFlowImpl implements FetchAccountTransactionFlow {
 
+    private  static  final Logger LOGGER = LoggerFactory.getLogger(CreateAccountTransactionFlowImpl.class);
+
     private final AccountTransactionTranslator accountTransactionTranslator;
     private final FetchAccountTypeFlow fetchAccountTypeFlow;
 
@@ -31,7 +35,9 @@ public class FetchAccountTransactionFlowImpl implements FetchAccountTransactionF
 
     @Override
     public List<AccountTransactionDto> getAllAccountTransactions() {
-        System.out.println("2 FetchTransFlow");
+
+        LOGGER.info("getAllAccountTransactions endpoint reached");
+
         List<AccountTransactionDto> accountTransactionDtos = new ArrayList<>();
         for(AccountTransaction accountTransaction:accountTransactionTranslator.getAllAccountTransactions()){
             accountTransactionDtos.add( new AccountTransactionDto(accountTransaction));
