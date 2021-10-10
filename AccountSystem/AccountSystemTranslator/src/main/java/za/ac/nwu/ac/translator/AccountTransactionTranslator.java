@@ -19,6 +19,8 @@ public interface AccountTransactionTranslator {
     int deleteAccountTypeByTransactionId(Long transactionId);
 
     List<AccountTransactionDto> getByAccountType(AccountType accountType);
+
+    List<AccountTransactionDto> getByMemberId(Long memberId);
 }
 
 

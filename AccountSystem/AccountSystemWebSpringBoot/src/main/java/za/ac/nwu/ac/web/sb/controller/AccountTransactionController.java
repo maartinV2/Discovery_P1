@@ -118,16 +118,16 @@ public class AccountTransactionController {
 
 
 
-    @GetMapping("/{mnemonic}")
+    @GetMapping("Mnemonic/{mnemonic}")
     @ApiOperation(value="Gets the configured AccountTransactions that matches the mnemonic in the url." , notes="Returns account type")
     @ApiResponses(value={
-            @ApiResponse(code=200, message = "Account type returned", response = GeneralResponse.class),
+            @ApiResponse(code=200, message = "Account transaction returned", response = GeneralResponse.class),
             @ApiResponse(code=400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code=404, message = "Not Found", response = GeneralResponse.class),
             @ApiResponse(code=500, message = "Internal Server Error", response = GeneralResponse.class)
     })
 
-    public ResponseEntity<GeneralResponse<List<AccountTransactionDto>>> getAccountTypeByMnemonic(
+    public ResponseEntity<GeneralResponse<List<AccountTransactionDto>>> getAccountTransactionByMnemonic(
             @ApiParam(value = "The mnemonic that uniqyely identifies the AccountTransaction.",
                     example = "MILES",
                     name = "mnemonic",
@@ -135,6 +135,27 @@ public class AccountTransactionController {
             @PathVariable("mnemonic") final String mnemonic) {
 
         List<AccountTransactionDto> accountTransactions=  fetchAccountTransactionFlow.getByMnemonic(mnemonic);
+        GeneralResponse<List<AccountTransactionDto>> response = new GeneralResponse(true, accountTransactions);
+        return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @GetMapping("MemberId/{memberId}")
+    @ApiOperation(value="Gets the configured AccountTransactions that matches the memberId in the url." , notes="Returns account type")
+    @ApiResponses(value={
+            @ApiResponse(code=200, message = "Account transaction returned", response = GeneralResponse.class),
+            @ApiResponse(code=400, message = "Bad Request", response = GeneralResponse.class),
+            @ApiResponse(code=404, message = "Not Found", response = GeneralResponse.class),
+            @ApiResponse(code=500, message = "Internal Server Error", response = GeneralResponse.class)
+    })
+
+    public ResponseEntity<GeneralResponse<List<AccountTransactionDto>>> getAccountTransactionByMemberId(
+            @ApiParam(value = "The mnemonic that uniqyely identifies the AccountTransaction.",
+                    example = "9803265096089",
+                    name = "memberId",
+                    required = true)
+            @PathVariable("memberId") final Long memberId) {
+
+        List<AccountTransactionDto> accountTransactions=  fetchAccountTransactionFlow.getByMemberId(memberId);
         GeneralResponse<List<AccountTransactionDto>> response = new GeneralResponse(true, accountTransactions);
         return new ResponseEntity(response, HttpStatus.OK);
     }
