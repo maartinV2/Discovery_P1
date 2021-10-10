@@ -67,5 +67,13 @@ public class FetchAccountTransactionFlowImpl implements FetchAccountTransactionF
         return  null != accountTransaction ? accountTransaction :null;
     }
 
+    @Override
+    public List<AccountTransactionDto> getByMemberIdAndAccountType(Long transactionId,String mnemonic){
+        AccountType accountType=  fetchAccountTypeFlow.getAccountTypeDbEntityByMnemonic(mnemonic);
+        List<AccountTransactionDto> accountTransactionDtos = new ArrayList<>();
+        accountTransactionDtos = accountTransactionTranslator.getByMemberIdAndAccountType(accountType,transactionId);
+        return  null != accountTransactionDtos ? accountTransactionDtos :null;
+    }
+
 }
 

@@ -124,6 +124,21 @@ public class AccountTransactionTranslatorImpl implements AccountTransactionTrans
         return  AccountTransactionDtos;
     }
 
+    @Override
+    public List<AccountTransactionDto> getByMemberIdAndAccountType(AccountType accountType,Long memberId) {
+        List<AccountTransactionDto> AccountTransactionDtos = new ArrayList<>();
+        try {
+            for ( AccountTransaction accountTransaction : accountTransactionRepository.findByMemberIdAndAccountType(accountType, memberId)) {
+                AccountTransactionDto accountTransactionDto= new AccountTransactionDto(accountTransaction);
+                AccountTransactionDtos.add(accountTransactionDto);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to read from DB ", e);
+
+        }
+        return  AccountTransactionDtos;
+    }
+
 
 
 }

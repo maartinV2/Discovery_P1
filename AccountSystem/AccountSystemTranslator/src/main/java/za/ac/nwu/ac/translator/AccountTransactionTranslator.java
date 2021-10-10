@@ -21,6 +21,8 @@ public interface AccountTransactionTranslator {
     List<AccountTransactionDto> getByAccountType(AccountType accountType);
 
     List<AccountTransactionDto> getByMemberId(Long memberId);
+
+    List<AccountTransactionDto> getByMemberIdAndAccountType(AccountType accountType,Long memberId);
 }
 
 

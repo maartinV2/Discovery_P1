@@ -33,4 +33,8 @@ public interface AccountTransactionRepository extends JpaRepository<AccountTrans
     @Transactional
     @Query("SELECT  atr FROM  AccountTransaction  atr WHERE atr.memberId = :memberId")
     List<AccountTransaction> findByMemberId(Long memberId);
+
+    @Transactional
+    @Query("SELECT  atr FROM  AccountTransaction  atr WHERE atr.memberId = :memberId and atr.accountType = :accountType")
+    List<AccountTransaction> findByMemberIdAndAccountType(AccountType accountType,Long memberId);
 }

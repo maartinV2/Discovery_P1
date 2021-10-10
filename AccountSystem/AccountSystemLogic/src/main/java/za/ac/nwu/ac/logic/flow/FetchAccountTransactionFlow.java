@@ -8,7 +8,10 @@ import java.util.List;
 
 public interface FetchAccountTransactionFlow {
     List<AccountTransactionDto> getAllAccountTransactions();
+
     List<AccountTransactionDto> getByMemberId(Long memberId);
+    List<AccountTransactionDto> getByMemberIdAndAccountType(Long transactionId,String mnemonic);
+
     List<AccountTransactionDto> getByMnemonic(String mnemonic);
     AccountTransactionDto getAccountTransactionDtoById(Long transactionId);
     AccountTransaction getAccountTransactionById(Long transactionId);
